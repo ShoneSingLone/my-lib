@@ -5,6 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "bl:HelloWorld": "vue-cli-service build --target lib --name cHelloWorld --dest _libLoopHelloWorld/babel ./src/components/HelloWorld.js",
+    "bl:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest _libLoopRoll/babel/LoopRoll ./src/components/LoopRoll/index.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
