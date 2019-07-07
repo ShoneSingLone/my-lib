@@ -5,6 +5,7 @@ import store from './store'
 import './registerServiceWorker'
 import HelloWorld from "@/components/HelloWorld.vue";
 
+window.Vue = Vue;
 Vue.config.productionTip = false
 console.log(HelloWorld.name, HelloWorld);
 Vue.component(HelloWorld.name, HelloWorld);

@@ -5,8 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "bl:HelloWorld": "vue-cli-service build --target lib --name cHelloWorld --dest _libLoopHelloWorld/babel ./src/components/HelloWorld.js",
-    "bl:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest _libLoopRoll/babel/LoopRoll ./src/components/LoopRoll/index.js",
+    "b:HelloWorld": "vue-cli-service build --target lib --name cHelloWorld --dest _lib/babel/LoopHelloWorld ./src/components/HelloWorld.js",
+    "b:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest _lib/babel/LoopRoll ./src/components/LoopRoll/index.js",
+    "b:imgViewer": "vue-cli-service build --target lib --name cImgViewer --dest _lib/babel/ImgViewer ./src/components/ImgViewer/instance.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
