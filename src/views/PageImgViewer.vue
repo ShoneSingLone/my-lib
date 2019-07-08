@@ -4,7 +4,6 @@
       target="_blank"
       href="https://github.com/XiongAmao/vue-easy-lightbox"
     >https://github.com/XiongAmao/vue-easy-lightbox</a>
-
     <h1>vue-easy-lightbox</h1>
     <h2>修改部分：</h2>
     <ol>
@@ -12,6 +11,10 @@
       <li>wheel滑动变大图片</li>
       <li>旋转及图标</li>
     </ol>
+    <a
+      target="_blank"
+      href="https://github.com/XiongAmao/vue-easy-lightbox"
+    >https://github.com/XiongAmao/vue-easy-lightbox</a>
     <pre v-html="code"></pre>
     <div class="gallery">
       <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => show(index)">
