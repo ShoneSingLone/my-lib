@@ -1,0 +1,15 @@
+{
+  "name": "@ventose/imgviewer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/cImgViewer.common.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

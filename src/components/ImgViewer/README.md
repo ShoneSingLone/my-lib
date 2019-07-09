@@ -1,5 +1,7 @@
 # ImgViewer
 
+[Demo](https://shonesinglone.github.io/my-lib/#/PageImgViewer)
+
 ```js
 import Vue from 'vue'
 ...
