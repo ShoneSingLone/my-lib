@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "常用的工具组件 my components, often use ",
   "scripts": {
+    "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "b:Demo": "vue-cli-service build --target lib --name cHelloWorld --dest @ventose/babel/LoopHelloWorld/lib ./src/components/HelloWorld.js",

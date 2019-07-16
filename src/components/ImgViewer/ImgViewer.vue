@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="visible" class="img-swiper modal s201907070818" @click.self="closeDialog">
+    <div v-show="visible" class="img-swiper modal s201907070818" @click.self="closeDialog">
       <div class="img-wrapper" :class="{transition: imgTransitionStatus}" :style="imgStyle">
         <img
           class="img"

@@ -1,10 +1,9 @@
 <template>
   <div class="page-img-viewer container">
-    <a
-      target="_blank"
-      href="https://github.com/XiongAmao/vue-easy-lightbox"
-    >https://github.com/XiongAmao/vue-easy-lightbox</a>
-    <h1>vue-easy-lightbox</h1>
+    <h1>
+      原项目：
+      <a target="_blank" href="https://github.com/XiongAmao/vue-easy-lightbox">vue-easy-lightbox</a>
+    </h1>
     <h2>修改部分：</h2>
     <ol>
       <li>全局单例，命令式调用</li>
@@ -13,8 +12,10 @@
     </ol>
     <a
       target="_blank"
-      href="https://github.com/XiongAmao/vue-easy-lightbox"
-    >https://github.com/XiongAmao/vue-easy-lightbox</a>
+      href="https://github.com/ShoneSingLone/my-lib/blob/master/src/views/PageImgViewer.vue"
+    >
+      <h1>PageImgViewer.vue</h1>
+    </a>
     <pre v-html="code"></pre>
     <div class="gallery">
       <div v-for="(src, index) in imgs" :key="index" class="pic" @click="() => show(index)">
@@ -32,8 +33,8 @@ export default {
   data() {
     return {
       code: `
-  mounted() {
-    //依赖全局的Vue 即 window.Vue
+  mounted() 
+{    //依赖全局的Vue 即 window.Vue
     (() => import("@/components/ImgViewer/instance.js"))();
   },
 
@@ -50,11 +51,11 @@ export default {
   }
 `,
       imgs: [
-        "https://i.loli.net/2018/11/10/5be6852cdb002.jpeg",
-        "https://i.loli.net/2018/11/10/5be6852ce6965.jpeg",
-        "https://i.loli.net/2018/11/10/5be6852dec46e.jpeg",
-        "https://i.loli.net/2018/11/10/5be6852e1366d.jpeg",
-        "https://i.loli.net/2018/11/10/5be6852e33f19.jpeg"
+        "https://shonesinglone.github.io/public/sample/0.jpg",
+        "https://shonesinglone.github.io/public/sample/1.jpg",
+        "https://shonesinglone.github.io/public/sample/2.jpg",
+        "https://shonesinglone.github.io/public/sample/3.jpg",
+        "https://shonesinglone.github.io/public/sample/4.jpg"
       ],
       visible: false,
       index: 0 // default
