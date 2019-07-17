@@ -9,11 +9,13 @@
     "b:Demo": "vue-cli-service build --target lib --name cHelloWorld --dest @ventose/babel/LoopHelloWorld/lib ./src/components/HelloWorld.js",
     "b:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest @ventose/babel/LoopRoll/lib ./src/components/LoopRoll/index.js",
     "b:imgViewer": "vue-cli-service build --target lib --name cImgViewer --dest @ventose/babel/ImgViewer/lib ./src/components/ImgViewer/instance.js",
+    "b:directives": "vue-cli-service build --target lib --name dInteractions --dest @ventose/babel/Interactions/lib ./src/directives/interactions/index.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "jquery": "^3.4.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

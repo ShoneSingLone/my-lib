@@ -1,0 +1,1 @@
+export default () => import( /* webpackChunkName: "jquery" */ `./external/jquery/jquery`)

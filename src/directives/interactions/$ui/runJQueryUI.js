@@ -1,0 +1,1 @@
+export default () => import( /* webpackChunkName: "jquery-ui" */ `./jquery-ui`)

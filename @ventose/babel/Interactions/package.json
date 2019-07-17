@@ -1,0 +1,20 @@
+{
+  "name": "@ventose/interactions",
+  "version": "0.0.1",
+  "description": "",
+  "Keywords": "vue dInteractions directives",
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "main": "./lib/dInteractions.common.min.js",
+  "unpkg": "./lib/dInteractions.umd.min.js",
+  "author": "https://github.com/ShoneSingLone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT"
+}

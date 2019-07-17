@@ -1,20 +1,31 @@
 <template>
   <div class="page-v-drag container">
-    <div>
-      <button @click="showImg=!showImg">toggle</button>
+    <h1 v-ia.drag>
+      <a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank">custom-directive</a>
+    </h1>
+    <div v-ia.drag>
+      <button @click="showImg=!showImg" v-ia.drag>toggle</button>
       <button @click="changeImg">changeImg</button>
     </div>
     <div>
-      <img v-if="showImg" class="demo-img" :src="imgSrc" alt="demo" srcset v-drag />
+      <input v-ia.drag="'the'" />
+    </div>
+    <div v-ia.drag="'the'">
+      <img v-if="showImg" class="demo-img" :src="imgSrc" alt="demo" v-ia.drag />
+      <img v-if="showImg" class="demo-img" :src="imgSrc" alt="demo" v-ia.drag />
     </div>
   </div>
 </template>
 <script>
+// import dInteractions from "@ventose/interactions";
+import dInteractions from "@/directives/interactions";
+
 export default {
   name: "PageVDrag",
   mounted() {},
   data() {
     return {
+      count: 1,
       showImg: false,
       imgSrc: "https://shonesinglone.github.io/public/sample/0.jpg",
       imgs: [
@@ -27,22 +38,13 @@ export default {
     };
   },
   directives: {
-    drag: {
-      // 当被绑定的元素插入到 DOM 中时……
-      bind: function(el, binding) {
-        console.log("bind", arguments, binding);
-      },
-      inserted: function() {
-        console.log("inserted", arguments);
-      },
-      update: function() {
-        console.log("update", arguments);
-      }
-    }
+    ia: dInteractions
   },
   methods: {
     changeImg() {
       this.changeImg.count = this.changeImg.count || 0;
+      this.changeImg.count = this.changeImg.count % 4;
+      this.imgSrc = this.imgs[this.changeImg.count++];
     }
   }
 };
@@ -53,6 +55,9 @@ export default {
     border-radius: 4px;
     width: 100px;
     box-shadow: #555 0px 5px 20px 2px;
+  }
+  div {
+    margin: 10px;
   }
 }
 </style>
