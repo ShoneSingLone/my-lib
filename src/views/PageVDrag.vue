@@ -19,7 +19,6 @@
 <script>
 // import dInteractions from "@ventose/interactions";
 import dInteractions from "@/directives/interactions";
-
 export default {
   name: "PageVDrag",
   mounted() {},

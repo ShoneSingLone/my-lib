@@ -1,29 +1,4 @@
 <script>
-import runJQuery from "./$ui/runJQuery";
-import runJQueryUI from "./$ui/runJQueryUI";
-let { $ } = window;
-function ok() {
-  return new Promise((resolve, reject) => {
-    if (!$) {
-      runJQuery()
-        .then(() => {
-          $ = window.$;
-          if (!$.ui) {
-            return runJQueryUI();
-          }
-        })
-        .then(_ => resolve(_))
-        .catch(error => reject(error));
-    } else if (!$.ui) {
-      runJQueryUI()
-        .then(_ => resolve(_))
-        .catch(error => reject(error));
-    } else {
-      return resolve();
-    }
-  });
-}
-
 export default {
   // name: "interactions",
   name: "ia",
@@ -34,8 +9,9 @@ export default {
   },
   /* 被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中) */
   inserted: function(el, { name, value, modifiers }) {
-    console.log("inserted", name, value, modifiers);
-    ok().then(() => {
+    setTimeout(() => {
+      let { $ } = window;
+      console.log("inserted", name, value, modifiers);
       el.dataset.zIndex = el.style.zIndex | 1;
       let $el = $(el);
       $(el)
@@ -48,7 +24,7 @@ export default {
       if (modifiers.drag) {
         $el.draggable();
       }
-    });
+    }, 3000);
   },
   /* 所在组件的 VNode 更新时调用 */
   update: function(el, { name, value, modifiers }) {
