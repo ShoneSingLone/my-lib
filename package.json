@@ -3,18 +3,19 @@
   "version": "0.0.1",
   "description": "常用的工具组件 my components, often use ",
   "scripts": {
-    "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "b:Demo": "vue-cli-service build --target lib --name cHelloWorld --dest @ventose/babel/LoopHelloWorld/lib ./src/components/HelloWorld.js",
     "b:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest @ventose/babel/LoopRoll/lib ./src/components/LoopRoll/index.js",
-    "b:imgViewer": "vue-cli-service build --target lib --name cImgViewer --dest @ventose/babel/ImgViewer/lib ./src/components/ImgViewer/instance.js",
     "b:directives": "vue-cli-service build --target lib --name dInteractions --dest @ventose/babel/Interactions/lib ./src/directives/interactions/index.js",
-    "lint": "vue-cli-service lint",
+    "b:imgViewer": "vue-cli-service build --target lib --name cImgViewer --dest @ventose/babel/ImgViewer/lib ./src/components/ImgViewer/instance.js",
+    "start": "npm run serve",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "element-ui": "^2.4.5",
     "jquery": "^3.4.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
@@ -36,12 +37,9 @@
     "lint-staged": "^8.1.5",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
+    "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10",
     "webpack-shell-plugin": "^0.5.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ShoneSingLone/my-lib.git"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -51,5 +49,9 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoneSingLone/my-lib.git"
   }
 }
