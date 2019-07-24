@@ -1,50 +1,52 @@
 <template>
-  <div class="page-v-drag container">
+  <div class="page-v-popper container">
+    <div class="rel" id="example10reference1"></div>
     <div>
-      <button @click="showImg=!showImg">toggle</button>
-      <button @click="changeImg">changeImg</button>
-    </div>
-    <div>
-      <img v-if="showImg" class="demo-img" :src="imgSrc" alt="demo" srcset v-drag />
+      <select id="example10positionSelector" v-model="placement">
+        <option value="top">Top</option>
+        <option value="right">Right</option>
+        <option value="bottom">Bottom</option>
+        <option value="left">Left</option>
+      </select>
+      <img
+        ref="reference"
+        class="demo-img"
+        src="https://shonesinglone.github.io/public/sample/0.jpg"
+        alt="demo"
+        v-popper="{html:componentTitle,placement}"
+      />
     </div>
   </div>
 </template>
 <script>
+import popper from "@/directives/popper";
+import Vue from "vue";
+
+let componentTitle = new Vue({
+  data() {
+    return {
+      msg: "template"
+    };
+  },
+  template: `<h1>{{msg}}</h1>`
+});
+window.componentTitle = componentTitle;
+
 export default {
-  name: "PageVDrag",
+  name: "PageVPopper",
   mounted() {},
   data() {
     return {
-      showImg: false,
-      imgSrc: "https://shonesinglone.github.io/public/sample/0.jpg",
-      imgs: [
-        "https://shonesinglone.github.io/public/sample/0.jpg",
-        "https://shonesinglone.github.io/public/sample/1.jpg",
-        "https://shonesinglone.github.io/public/sample/2.jpg",
-        "https://shonesinglone.github.io/public/sample/3.jpg",
-        "https://shonesinglone.github.io/public/sample/4.jpg"
-      ]
+      componentTitle,
+      placement: "top",
+      currentPopper: {}
     };
   },
   directives: {
-    drag: {
-      // 当被绑定的元素插入到 DOM 中时……
-      bind: function(el, binding) {
-        console.log("bind", arguments, binding);
-      },
-      inserted: function() {
-        console.log("inserted", arguments);
-      },
-      update: function() {
-        console.log("update", arguments);
-      }
-    }
+    popper
   },
-  methods: {
-    changeImg() {
-      this.changeImg.count = this.changeImg.count || 0;
-    }
-  }
+  watch: {},
+  methods: {}
 };
 </script>
 <style lang="scss">

@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       render: h => {
-        let _this = this;
         let getAHProperty = i => ({
           model: {
             prop: "value",
