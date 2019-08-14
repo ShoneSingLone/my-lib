@@ -11,14 +11,7 @@ function updatePopper(el, { name, value, modifiers }, tag = "updatePopper") {
   let { html: htmlVue, placement = "top" } = value;
   if (htmlVue) {
     let htmlInstance = htmlVue.$mount();
-    el.currentPopper = new Popper(
-      el,
-      $(htmlInstance.$mount().$el).appendTo("body"),
-      {
-        ...value,
-        placement
-      }
-    );
+    el.currentPopper = new Popper( el, $(htmlInstance.$mount().$el).appendTo("body"), { ...value, placement } );
   }
 }
 

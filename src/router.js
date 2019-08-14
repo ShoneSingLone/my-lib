@@ -16,7 +16,7 @@ function createRouteArray(data) {
   if (typeof data === "string") {
     return [new Route(data)];
   } else {
-    return data.map(i => new Route(i));
+    return data.map(name => new Route(name));
   }
 }
 
@@ -26,7 +26,10 @@ let _routeList = createRouteArray([
   'PageImgViewer',
   'PageWindow',
   'PageVDrag',
-  'PageTips'
+  'PageD3',
+  'PageTips',
+  'PageProgress',
+  'PagePlyr'
 ]);
 
 export let routeList = _routeList;

@@ -1,0 +1,21 @@
+{
+  "name": "@ventose/parse-json",
+  "version": "0.0.3",
+  "description": "",
+  "Keywords": "parse-json",
+  "dependencies": {
+    "vue": "^2.6.10",
+    "yargs": "^13.3.0"
+  },
+  "main": "./lib/cImgViewer.common.js",
+  "unpkg": "./lib/cImgViewer.umd.min.js",
+  "author": "https://github.com/ShoneSingLone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT"
+}

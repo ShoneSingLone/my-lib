@@ -8,6 +8,7 @@
         <option value="bottom">Bottom</option>
         <option value="left">Left</option>
       </select>
+      
       <img
         ref="reference"
         class="demo-img"
