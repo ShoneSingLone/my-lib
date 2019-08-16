@@ -1,34 +1,42 @@
 <template>
   <video v-bind="$attrs" :poster="poster">
-    <source :src="item.src" :type="item.type" v-for="(item, index) in source" :key="index" />
+    <source
+      v-for="(item, index) in options.sourceSrc"
+      :key="index"
+      :src="item.src"
+      :type="item.type"
+    />
   </video>
 </template>
 
 <script>
-import Plyr from "@/components/Plyr/src/js/plyr.js";
+// import Plyr from "@/components/Plyr/src/js/plyr.js";
 
 export default {
   props: {
     poster: String,
-    source: {
+    options: {
       required: true,
-      type: Array
+      type: Object
     }
   },
   mounted() {
     this.init();
   },
+  data() {
+    return {
+      player: {}
+    };
+  },
   methods: {
     init() {
-      new Plyr(this.$el, {
-        previewThumbnails: {
-          enabled: true,
-          src: [
-            "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
-            "https://cdn.plyr.io/static/demo/thumbs/240p.vtt"
-          ]
-        }
-      });
+      let { Plyr } = window;
+      if (!Plyr) return console.warn("未引入 lib Plyr");
+      this.player = new Plyr(this.$el, this.options);
+      this.addTitle();
+    },
+    addTitle(){
+      
     }
   }
 };
