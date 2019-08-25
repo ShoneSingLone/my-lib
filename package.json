@@ -10,7 +10,9 @@
     "b:LoopRoll": "vue-cli-service build --target lib --name cLoopRoll --dest @ventose/babel/LoopRoll/lib ./src/components/LoopRoll/index.js",
     "b:directives": "vue-cli-service build --target lib --name dInteractions --dest @ventose/babel/Interactions/lib ./src/directives/interactions/index.js",
     "b:imgViewer": "vue-cli-service build --target lib --name cImgViewer --dest @ventose/babel/ImgViewer/lib ./src/components/ImgViewer/instance.js",
+    "b:Plyr": "vue-cli-service build --mode umd --target lib --name cPlyr --dest @ventose/babel/Plyr/lib ./src/components/Plyr/index.js",
     "b:NodeIODB": "vue-cli-service build --target lib --name NodeLibIODB --dest @ventose/babel/NodeIODB/lib ./src/nodejslib/NodeIODB/index.js",
+    "b:loadJS": "vue-cli-service build --target lib --name Ventose --dest @ventose/babel/loadJS/lib ./src/utils/loadJS.index.js",
     "start": "npm run serve",
     "test:unit": "vue-cli-service test:unit"
   },

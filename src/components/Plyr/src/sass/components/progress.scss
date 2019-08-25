@@ -27,6 +27,54 @@ $plyr-progress-offset: $plyr-range-thumb-height;
         font-size: $plyr-font-size-time;
         left: 0;
     }
+
+    /* title 片段 */
+    .progress-hightlights {
+        display: block;
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        background: #fff;
+        border: 3px solid #fff;
+
+        // border-radius: 100%;
+
+        // box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(35, 41, 47, 0.2);
+        height: 6px;
+        transition: all 0.2s ease;
+        width: 6px;
+        margin-top: -4px;
+
+        .progress-hightlights-tips {
+            display: none;
+            position: absolute;
+            transition: all 0.2s ease;
+            left: 50%;
+            bottom: 11px;
+            padding: 5px 8px;
+            max-width: 145px;
+            min-width: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            height: 40px;
+            width: 128px;
+            font-size: 12px;
+            letter-spacing: 0;
+            line-height: 21px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        &:hover {
+            .progress-hightlights-tips {
+                display: block;
+            }
+        }
+    }
 }
 
 .plyr__progress__buffer {
@@ -79,16 +127,7 @@ $plyr-progress-offset: $plyr-range-thumb-height;
 // Loading state
 .plyr--loading .plyr__progress__buffer {
     animation: plyr-progress 1s linear infinite;
-    background-image: linear-gradient(
-        -45deg,
-        $plyr-progress-loading-bg 25%,
-        transparent 25%,
-        transparent 50%,
-        $plyr-progress-loading-bg 50%,
-        $plyr-progress-loading-bg 75%,
-        transparent 75%,
-        transparent
-    );
+    background-image: linear-gradient(-45deg, $plyr-progress-loading-bg 25%, transparent 25%, transparent 50%, $plyr-progress-loading-bg 50%, $plyr-progress-loading-bg 75%, transparent 75%, transparent);
     background-repeat: repeat-x;
     background-size: $plyr-progress-loading-size $plyr-progress-loading-size;
     color: transparent;

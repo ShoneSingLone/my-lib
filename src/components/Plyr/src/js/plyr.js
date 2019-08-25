@@ -7,8 +7,14 @@
 
 import captions from './captions';
 import defaults from './config/defaults';
-import { pip } from './config/states';
-import { getProviderByUrl, providers, types } from './config/types';
+import {
+    pip
+} from './config/states';
+import {
+    getProviderByUrl,
+    providers,
+    types
+} from './config/types';
 import Console from './console';
 import controls from './controls';
 import Fullscreen from './fullscreen';
@@ -16,19 +22,47 @@ import Listeners from './listeners';
 import media from './media';
 import Ads from './plugins/ads';
 import PreviewThumbnails from './plugins/preview-thumbnails';
+import PreviewTitle from './plugins/preview-title';
 import source from './source';
 import Storage from './storage';
 import support from './support';
 import ui from './ui';
-import { closest } from './utils/arrays';
-import { createElement, hasClass, removeElement, replaceElement, toggleClass, wrap } from './utils/elements';
-import { off, on, once, triggerEvent, unbindListeners } from './utils/events';
+import {
+    closest
+} from './utils/arrays';
+import {
+    createElement,
+    hasClass,
+    removeElement,
+    replaceElement,
+    toggleClass,
+    wrap
+} from './utils/elements';
+import {
+    off,
+    on,
+    once,
+    triggerEvent,
+    unbindListeners
+} from './utils/events';
 import is from './utils/is';
 import loadSprite from './utils/load-sprite';
-import { clamp } from './utils/numbers';
-import { cloneDeep, extend } from './utils/objects';
-import { getAspectRatio, reduceAspectRatio, setAspectRatio, validateRatio } from './utils/style';
-import { parseUrl } from './utils/urls';
+import {
+    clamp
+} from './utils/numbers';
+import {
+    cloneDeep,
+    extend
+} from './utils/objects';
+import {
+    getAspectRatio,
+    reduceAspectRatio,
+    setAspectRatio,
+    validateRatio
+} from './utils/style';
+import {
+    parseUrl
+} from './utils/urls';
 
 // Private properties
 // TODO: Use a WeakMap for private globals
@@ -62,8 +96,7 @@ class Plyr {
         }
 
         // Set config
-        this.config = extend(
-            {},
+        this.config = extend({},
             defaults,
             Plyr.defaults,
             options || {},
@@ -264,7 +297,9 @@ class Plyr {
 
         // Wrap media
         if (!is.element(this.elements.container)) {
-            this.elements.container = createElement('div', { tabindex: 0 });
+            this.elements.container = createElement('div', {
+                tabindex: 0
+            });
             wrap(this.media, this.elements.container);
         }
 
@@ -312,6 +347,12 @@ class Plyr {
         // Setup preview thumbnails if enabled
         if (this.config.previewThumbnails.enabled) {
             this.previewThumbnails = new PreviewThumbnails(this);
+        }
+        
+        // Setup preview title if enabled
+        /* 片段说明，有一个小标题，或者可以自定义data-set */
+        if (this.config.previewTitle.enabled) {
+            this.previewTitle = new PreviewTitle(this);
         }
     }
 
@@ -483,7 +524,9 @@ class Plyr {
      * Get buffered
      */
     get buffered() {
-        const { buffered } = this.media;
+        const {
+            buffered
+        } = this.media;
 
         // YouTube / Vimeo return a float between 0-1
         if (is.number(buffered)) {
@@ -541,7 +584,9 @@ class Plyr {
 
         // Use config if all else fails
         if (!is.number(volume)) {
-            ({ volume } = this.config);
+            ({
+                volume
+            } = this.config);
         }
 
         // Maximum is volumeMax
@@ -661,7 +706,10 @@ class Plyr {
         }
 
         // Clamp to min/max
-        const { minimumSpeed: min, maximumSpeed: max } = this;
+        const {
+            minimumSpeed: min,
+            maximumSpeed: max
+        } = this;
         speed = clamp(speed, min, max);
 
         // Update config
@@ -755,7 +803,9 @@ class Plyr {
 
         // Save to storage
         if (updateStorage) {
-            this.storage.set({ quality });
+            this.storage.set({
+                quality
+            });
         }
     }
 
@@ -846,7 +896,9 @@ class Plyr {
      * Get a download URL (either source or custom)
      */
     get download() {
-        const { download } = this.config.urls;
+        const {
+            download
+        } = this.config.urls;
 
         return is.url(download) ? download : this.source;
     }
@@ -956,7 +1008,10 @@ class Plyr {
      * Get the current caption track index (-1 if disabled)
      */
     get currentTrack() {
-        const { toggled, currentTrack } = this.captions;
+        const {
+            toggled,
+            currentTrack
+        } = this.captions;
         return toggled ? currentTrack : -1;
     }
 

@@ -1,0 +1,17 @@
+{
+    "name": "@ventose/utils-loadjs",
+    "version": "0.0.3",
+    "description": "",
+    "Keywords": "load js",
+    "main": "./lib/Ventose.common.js",
+    "unpkg": "./lib/Ventose.umd.min.js",
+    "author": "https://github.com/ShoneSingLone",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "license": "MIT"
+}

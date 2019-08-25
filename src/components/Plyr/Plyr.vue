@@ -11,6 +11,7 @@
 
 <script>
 // import Plyr from "@/components/Plyr/src/js/plyr.js";
+import PreviewTitle from "@/components/Plyr/src/js/plugins/preview-title";
 
 export default {
   props: {
@@ -35,8 +36,10 @@ export default {
       this.player = new Plyr(this.$el, this.options);
       this.addTitle();
     },
-    addTitle(){
-      
+    addTitle() {
+      if (this.options.previewTitle.enabled) {
+        this.previewTitle = new PreviewTitle(this.player);
+      }
     }
   }
 };

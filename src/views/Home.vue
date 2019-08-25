@@ -11,6 +11,8 @@
 <script>
 // @ is an alias to /src
 import { routeList } from "@/router.js";
+import loadJS from "@/utils/loadJS.js";
+loadJS([["jquery-element", "./lib/element/index.js"]]);
 export default {
   name: "home",
   mounted() {},
