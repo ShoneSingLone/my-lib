@@ -22,6 +22,7 @@ function createRouteArray(data) {
 
 let _routeList = createRouteArray([
   'PageTest',
+  'PageMarkdown',
   'PageLoopRoll',
   'PageImgViewer',
   'PageWindow',
