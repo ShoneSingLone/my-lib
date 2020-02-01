@@ -1,4 +1,7 @@
 const NodeIODB = require("./index");
+/* 
+rollup index.js --file NodeIODB.js --format cjs --name "myBundle"
+ */
 (async () => {
 
     // Create a new Pocket
