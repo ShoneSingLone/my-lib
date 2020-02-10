@@ -9,7 +9,9 @@ export default {
   name: "PageWindow",
   mounted() {},
   data() {
-    return {};
+    return {
+      markdownContent: "# hehe"
+    };
   },
   methods: {},
   components: {

@@ -22,21 +22,21 @@ export default function (JSArray) {
                     scriptEle.id = scriptID;
                     scriptEle.src = jsPath;
                     scriptEle.defer = true;
-                    
+
                     scriptEle.onload = function (event) {
                         scriptEle.onload = scriptEle.onerror = null;
                         resolve(event);
                     };
-                    
+
                     scriptEle.onerror = function (event) {
                         console.warn(event.type);
                         console.log(scriptEle.src);
                         scriptEle.onload = scriptEle.onerror = null;
                         reject(event);
                     };
-                    
+
                     var $scriptGroup = $$("#script-group");
-                    
+
                     if (!$scriptGroup) {
                         $scriptGroup = document.createElement("div");
                         $scriptGroup.id = "script-group";
