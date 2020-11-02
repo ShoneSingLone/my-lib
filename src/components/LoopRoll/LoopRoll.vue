@@ -11,6 +11,7 @@ export default {
   props: ["items"],
   methods: {},
   mounted() {
+    debugger;
     this.$slots = this.defaultSlot;
   }
 };
