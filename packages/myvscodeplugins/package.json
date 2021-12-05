@@ -3,6 +3,7 @@
 	"displayName": "MyVSCodePlugins",
 	"description": "my private vscode plugins settings",
 	"version": "0.0.1",
+	"publisher": "ShoneSingLone",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -10,14 +11,21 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:myvscodeplugins.helloWorld"
+		"onCommand:shone.sing.lone.transpose",
+		"onCommand:shone.sing.lone.expandToLine",
+		"onCommand:shone.sing.lone.splitIntoLines",
+		"onCommand:shone.sing.lone.joinLines"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "myvscodeplugins.helloWorld",
-				"title": "Hello World"
+				"command": "shone.sing.lone.transpose",
+				"title": "Transpose"
+			},
+			{
+				"command": "shone.sing.lone.splitIntoLines",
+				"title": "Split into Lines"
 			}
 		]
 	},

@@ -1,26 +1,167 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+'use strict';
+
 import * as vscode from 'vscode';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "myvscodeplugins" is now active!');
+// Helper functions
+// ================
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('myvscodeplugins.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from MyVSCodePlugins!');
-	});
-
-	context.subscriptions.push(disposable);
+function getNext(position: vscode.Position, document: vscode.TextDocument) {
+	const endOfLine = document.lineAt(position.line).range.end.character;
+	if (position.character != endOfLine) {
+		return new vscode.Position(position.line, position.character + 1);
+	}
+	if (position.line == (document.lineCount - 1)) {
+		return null;
+	}
+	return new vscode.Position(position.line + 1, 0);
 }
 
-// this method is called when your extension is deactivated
-export function deactivate() {}
+function getPrev(position: vscode.Position, document: vscode.TextDocument) {
+	if (position.character != 0) {
+		return new vscode.Position(position.line, position.character - 1);
+	}
+	if (position.line == 0) {
+		return null;
+	}
+	const endOfPrevLine = document.lineAt(position.line - 1).range.end.character;
+	return new vscode.Position(position.line - 1, endOfPrevLine);
+}
+
+/** Returns the range deleted, if successful */
+function joinLineWithNext(line: number, edit: vscode.TextEditorEdit, document: vscode.TextDocument) {
+	if (line >= document.lineCount - 1) return null;
+	const matchWhitespaceAtEnd = document.lineAt(line).text.match(/\s*$/);
+	const range = new vscode.Range(
+		//@ts-ignore
+		line, document.lineAt(line).range.end.character - matchWhitespaceAtEnd[0].length,
+		line + 1, document.lineAt(line + 1).firstNonWhitespaceCharacterIndex);
+	edit.replace(range, ' ');
+	return range;
+}
+
+// Commands
+// ========
+
+function transposeCharacters(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	const document = textEditor.document;
+	textEditor.selections.forEach(selection => {
+		let p: vscode.Position = new vscode.Position(selection.active.line, selection.active.character)
+		let nextPosition = getNext(p, document);
+		if (nextPosition == null) {
+			nextPosition = p;
+			//@ts-ignore
+			p = getPrev(p, document);
+		}
+		let prevPosition = getPrev(p, document);
+		if (prevPosition == null) {
+			return;
+		}
+		let nextSelection = new vscode.Selection(p, nextPosition);
+		let nextChar = textEditor.document.getText(nextSelection);
+		edit.delete(nextSelection);
+		edit.insert(prevPosition, nextChar);
+	});
+}
+
+function transposeSelections(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	const selectionText: any = textEditor.selections.map(selection => {
+		return textEditor.document.getText(selection);
+	});
+
+	// Transpose
+	selectionText.unshift(selectionText.pop());
+
+	for (let i = 0; i < selectionText.length; i++) {
+		edit.replace(textEditor.selections[i], selectionText[i]);
+	}
+}
+
+function transpose(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	if (textEditor.selections.every(s => s.isEmpty)) {
+		transposeCharacters(textEditor, edit);
+	} else {
+		transposeSelections(textEditor, edit);
+	}
+}
+
+function splitIntoLines(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	let newSelections: vscode.Selection[] = [];
+	for (let selection of textEditor.selections) {
+		if (selection.isSingleLine) {
+			newSelections.push(selection);
+			continue;
+		}
+		let line = textEditor.document.lineAt(selection.start);
+		newSelections.push(new vscode.Selection(
+			selection.start,
+			line.range.end
+		));
+		for (let lineNum = selection.start.line + 1; lineNum < selection.end.line; lineNum++) {
+			line = textEditor.document.lineAt(lineNum);
+			newSelections.push(new vscode.Selection(
+				line.range.start,
+				line.range.end
+			));
+		}
+		if (selection.end.character > 0) {
+			newSelections.push(new vscode.Selection(
+				selection.end.with(undefined, 0),
+				selection.end
+			));
+		}
+	}
+	textEditor.selections = newSelections;
+}
+
+function expandToLine(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	let newSelections: vscode.Selection[] = [];
+	for (let selection of textEditor.selections) {
+		newSelections.push(new vscode.Selection(
+			selection.start.with(undefined, 0),
+			selection.end.with(selection.end.line + 1, 0)
+		));
+	}
+	textEditor.selections = newSelections;
+}
+
+function joinLines(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+	const document = textEditor.document;
+
+	let newSelections: vscode.Selection[] = [];
+
+	for (const selection of textEditor.selections) {
+		if (selection.isEmpty) {
+			const range = joinLineWithNext(selection.start.line, edit, document);
+			if (range) {
+				newSelections.push(new vscode.Selection(range.end, range.end));
+			} else {
+				newSelections.push(selection)
+			}
+		} else {
+			for (let lineNum = selection.start.line; lineNum <= selection.end.line; lineNum++) {
+				joinLineWithNext(lineNum, edit, document);
+			}
+			newSelections.push(selection);
+		}
+	}
+	textEditor.selections = newSelections;
+}
+
+// Activate
+// ========
+
+export function activate(context: vscode.ExtensionContext) {
+	console.log("activete");
+	
+	const disposable = vscode.commands.registerTextEditorCommand('shone.sing.lone.transpose', transpose);
+	context.subscriptions.push(disposable);
+
+	const disposable2 = vscode.commands.registerTextEditorCommand('shone.sing.lone.splitIntoLines', splitIntoLines);
+	context.subscriptions.push(disposable2);
+
+/* 	const disposable3 = vscode.commands.registerTextEditorCommand('shone.sing.lone.expandToLine', expandToLine);
+	context.subscriptions.push(disposable3);
+
+	const disposable4 = vscode.commands.registerTextEditorCommand('shone.sing.lone.joinLines', joinLines);
+	context.subscriptions.push(disposable4); */
+}
