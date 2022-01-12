@@ -20,13 +20,3 @@
 [--dry-run] 从开始 npm@6，除了实际发布到注册表外，所有发布都可以完成。报告将要发布的内容的详细信息。
 
 
-- add selection to next find match
-- View: Close All Editors
-- View: Close Editor
-- View: show Explore
-- Insert Line Above
-- Insert Line Below
-- Search: Find in Files
-- Split into Lines
-- Transpose
-- expandToLine 

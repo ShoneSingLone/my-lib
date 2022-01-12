@@ -9,6 +9,17 @@
 - [myvscodeplugins_items](https://marketplace.visualstudio.com/items?itemName=ShoneSingLone.myvscodeplugins)
 
 
+- add selection to next find match
+- View: Close All Editors
+- View: Close Editor
+- View: show Explore
+- Insert Line Above
+- Insert Line Below
+- Search: Find in Files
+- Split into Lines
+- Transpose
+- expandToLine 
+
 
 ```js
 "commands": [
@@ -22,6 +33,8 @@
     }
 ]
 /* 
+vscode 已经 内置
+包括 Bracket Pairs => Editor>Guides:
 {
     "command": "shone.sing.lone.expandToLine",
     "title": "Expand Selection to Line"
