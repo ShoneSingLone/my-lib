@@ -1,13 +1,3 @@
-# myvscodeplugins
-
-[vscode-sublime-commands](https://github.com/Zarel/vscode-sublime-commands)
-[vs code ](https://segmentfault.com/a/1190000040720760)
-[publishing-extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
-[get-a-personal-access-token](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token)
-
-- [myvscodeplugins_manage](https://marketplace.visualstudio.com/manage/publishers/ShoneSingLone/extensions/myvscodeplugins/hub?_a=acquisition)
-- [myvscodeplugins_items](https://marketplace.visualstudio.com/items?itemName=ShoneSingLone.myvscodeplugins)
-
 
 - add selection to next find match
 - View: Close All Editors

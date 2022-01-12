@@ -1,4 +1,4 @@
-# my-lib
+# MyLibs
 
 开发有依赖或者没依赖的Vue component
 
@@ -19,4 +19,14 @@
 [--otp ] 如果您在 auth-and-writes 模式下启用了双重身份验证，那么您可以为此提供来自身份验证器的代码。如果您不包括此文件，而您正在从 TTY 中运行，则会提示您。
 [--dry-run] 从开始 npm@6，除了实际发布到注册表外，所有发布都可以完成。报告将要发布的内容的详细信息。
 
+
+# myvscodeplugins
+
+[vscode-sublime-commands](https://github.com/Zarel/vscode-sublime-commands)
+[vs code ](https://segmentfault.com/a/1190000040720760)
+[publishing-extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+[get-a-personal-access-token](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token)
+
+- [myvscodeplugins_manage](https://marketplace.visualstudio.com/manage/publishers/ShoneSingLone/extensions/myvscodeplugins/hub?_a=acquisition)
+- [myvscodeplugins_items](https://marketplace.visualstudio.com/items?itemName=ShoneSingLone.myvscodeplugins)
 
