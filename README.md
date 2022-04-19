@@ -1,6 +1,8 @@
 # MyLibs
 
-开发有依赖或者没依赖的Vue component
+[lerna](http://www.febeacon.com/lerna-docs-zh-cn/routes/commands/add.html)
+
+- `lerna add lodash --scope=@ventose/util-node`
 
 # 操作
 

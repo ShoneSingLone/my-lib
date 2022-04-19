@@ -1,0 +1,16 @@
+{
+    "name": "@ventose/temp",
+    "version": "0.0.1",
+    "description": "temp",
+    "Keywords": "temp",
+    "main": "./index.js",
+    "author": "https://github.com/ShoneSingLone",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+    },
+    "scripts": {
+        "start": "nodemon ./index.js"
+    },
+    "license": "MIT"
+}

@@ -10,6 +10,10 @@
         "url": "git+https://github.com/ShoneSingLone/my-lib.git"
     },
     "scripts": {
+        "dev": "nodemon ./ventose.js"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "@ventose/utils-node": "^0.0.1"
+    }
 }

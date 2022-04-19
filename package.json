@@ -3,5 +3,15 @@
   "private": true,
   "devDependencies": {
     "lerna": "^4.0.0"
-  }
+  },
+  "scripts": {
+    "list": "lerna list",
+    "dev": "lerna run dev --scope @ventose/cli --scope @ventose/utils-node",
+    "bootstrap": "lerna bootstrap --npm-client=yarn",
+    "create": "lerna create gpnote packages",
+    "command": "lerna add @ventose/utils-node --scope=@ventose/cli"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

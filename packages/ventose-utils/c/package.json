@@ -1,0 +1,16 @@
+{
+    "name": "@ventose/utils",
+    "version": "0.0.1",
+    "description": "常用工具函数",
+    "Keywords": "utils",
+    "main": "./index.js",
+    "author": "https://github.com/ShoneSingLone",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ShoneSingLone/my-lib.git"
+    },
+    "scripts": {
+        "start": "nodemon ./index.js"
+    },
+    "license": "MIT"
+}
