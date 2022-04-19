@@ -10,8 +10,5 @@
     "bootstrap": "lerna bootstrap --npm-client=yarn",
     "create": "lerna create gpnote packages",
     "command": "lerna add @ventose/utils-node --scope=@ventose/cli"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }

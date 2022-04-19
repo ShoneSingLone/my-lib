@@ -1,5 +1,8 @@
 
 const _ = require("lodash");
+const fs = require("fs");
+const path = require("path");
+const fsAsync = fs.promises;
 
 _.$pathR = (...args) => path.resolve.apply(path, args);
 _.$pathDir = (p) => path.dirname(p);

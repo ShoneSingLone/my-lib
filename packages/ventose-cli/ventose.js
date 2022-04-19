@@ -2,10 +2,14 @@ const fs = require("fs");
 const { _ } = require("@ventose/utils-node");
 const fsAsync = fs.promises;
 
+const customConfigsPath = process.argv[2];
+console.log("🚀 customConfigsPath", customConfigsPath);
+
 async function main() {
-    const path_privatConfigsFile = _.$pathR("private/configs.js");
+    const path_privatConfigsFile = _.$pathR(customConfigsPath || "private/configs.js");
     console.log(_.$pathDir(path_privatConfigsFile));
     const isExit = fs.existsSync(path_privatConfigsFile);
+
     if (!isExit) {
         const content_privateConfigsFile = await fsAsync.readFile(_.$pathR("./demo/privateConfigs.js"));
         await _.$writeFileForce(path_privatConfigsFile, content_privateConfigsFile);
