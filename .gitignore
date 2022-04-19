@@ -21,3 +21,4 @@ yarn-error.log*
 *.sw?
 *.vscode-test
 *.vsix
+privateConfigs.js
