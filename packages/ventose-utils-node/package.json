@@ -1,6 +1,6 @@
 {
     "name": "@ventose/utils-node",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "常用工具函数",
     "Keywords": "utils",
     "main": "./lodash_node.js",
@@ -12,7 +12,7 @@
     "scripts": {
         "dev": "nodemon ./dev.js",
         "doc": "node ./prepublish.js",
-        "up": "npm run doc && npm publish && npm version patch  --access public"
+        "up": "npm run doc && npm version patch && npm publish --access public"
     },
     "license": "MIT",
     "dependencies": {
