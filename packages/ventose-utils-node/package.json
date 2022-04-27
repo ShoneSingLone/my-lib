@@ -3,7 +3,7 @@
     "version": "0.0.5",
     "description": "常用工具函数",
     "Keywords": "utils",
-    "main": "./index.js",
+    "main": "./lodash_node.js",
     "author": "https://github.com/ShoneSingLone",
     "repository": {
         "type": "git",
@@ -12,7 +12,7 @@
     "scripts": {
         "dev": "nodemon ./dev.js",
         "doc": "node ./prepublish.js",
-        "up": "npm version patch && npm run doc && npm publish --access public"
+        "up": "npm run doc && npm publish && npm version patch  --access public"
     },
     "license": "MIT",
     "dependencies": {

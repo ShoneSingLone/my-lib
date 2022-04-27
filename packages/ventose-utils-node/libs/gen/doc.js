@@ -1,4 +1,4 @@
-const { tools } = require("./common");
+const { tools } = require("../common");
 const newLine = "\r\n";
 function getFnNames() {
   return tools.fs
@@ -48,3 +48,4 @@ function genMarkdown() {
 
 exports.genMarkdown = genMarkdown;
 exports.getFnNames = getFnNames;
+exports.newLine = newLine;
