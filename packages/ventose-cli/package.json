@@ -3,17 +3,23 @@
     "version": "0.0.1",
     "description": "常用的命令行工具",
     "Keywords": "cli scp deploy",
-    "main": "./lib/Ventose.common.js",
+    "main": "./bin/index.js",
     "author": "https://github.com/ShoneSingLone",
+    "bin": {
+        "ventose": "./bin/main.js"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ShoneSingLone/my-lib.git"
     },
+    "license": "MIT",
     "scripts": {
+        "up": "npm version patch && npm publish",
         "dev": "nodemon ./ventose.js"
     },
-    "license": "MIT",
     "dependencies": {
-        "@ventose/utils-node": "^0.0.1"
+        "@ventose/utils-node": "^0.0.1",
+        "commander": "^9.2.0",
+        "ssh2-sftp-client": "^8.0.0"
     }
 }
