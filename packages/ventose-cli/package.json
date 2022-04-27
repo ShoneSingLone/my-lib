@@ -1,6 +1,6 @@
 {
     "name": "@ventose/cli",
-    "version": "0.0.0",
+    "version": "0.0.2",
     "description": "常用的命令行工具",
     "Keywords": "cli scp deploy 前端部署",
     "main": "./bin/index.js",
@@ -14,7 +14,7 @@
     },
     "license": "MIT",
     "scripts": {
-        "up": "npm version patch && npm publish",
+        "up": "npm version patch && npm publish --access public",
         "dev": "nodemon ./ventose.js"
     },
     "dependencies": {

@@ -1,6 +1,6 @@
 {
     "name": "@ventose/utils-node",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "常用工具函数",
     "Keywords": "utils",
     "main": "./index.js",
@@ -10,7 +10,8 @@
         "url": "git+https://github.com/ShoneSingLone/my-lib.git"
     },
     "scripts": {
-        "start": "nodemon ./index.js"
+        "dev": "nodemon ./dev.js",
+        "up": "npm version patch && npm publish --access public"
     },
     "license": "MIT",
     "dependencies": {
