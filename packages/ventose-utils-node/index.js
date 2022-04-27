@@ -1,31 +1,59 @@
+const {tools} = require("./libs/common");
+const {getFnNames} = require("./genDoc");
 
-const _ = require("lodash");
-const fs = require("fs");
-const path = require("path");
-const fsAsync = fs.promises;
+let fnNames = getFnNames();
 
-_.$pathR = (...args) => path.resolve.apply(path, args);
-_.$pathDir = (p) => path.dirname(p);
-_.$safeMakeDir = async (path_dir) => {
-    if (fs.existsSync(path_dir)) {
-        return true;
-    }
-    const path_dirParent = _.$pathDir(path_dir);
-    if (!fs.existsSync(path_dirParent)) {
-        await _.$safeMakeDir(path_dirParent);
-        console.log("🚀dirParent", path_dirParent);
-    }
-    await fsAsync.mkdir(path_dir);
-};
+fnNames.forEach((fnName) => {
+    const fn = require(`./libs/fp/${fnName}`)[fnName];
+    tools._[`$${fnName}`] = fn;
+});
 
-_.$writeFileForce = async (path_file, content) => {
-    if (!fs.existsSync(path_file)) {
-        const path_fileParent = _.$pathDir(path_file);
-        if (!fs.existsSync(path_fileParent)) {
-            await _.$safeMakeDir(path_fileParent);
+/*_n:lodash_node*/
+module.exports = {_n: tools._};
+
+/**
+ * 删除文件夹下所有问价及将文件夹下所有文件清空
+ * @param {*} path
+ */
+function emptyDir(path) {
+    const files = fs.readdirSync(path);
+    files.forEach((file) => {
+        const filePath = `${path}/${file}`;
+        const stats = fs.statSync(filePath);
+        if (stats.isDirectory()) {
+            emptyDir(filePath);
+        } else {
+            fs.unlinkSync(filePath);
+            console.log(`删除${file}文件成功`);
         }
-    }
-    await fsAsync.writeFile(path_file, content);
-};
+    });
+}
 
-module.exports = { _ };
+/**
+ * 删除指定路径下的所有空文件夹
+ * @param {*} path
+ */
+function rmEmptyDir(path, level = 0) {
+    const files = fs.readdirSync(path);
+    if (files.length > 0) {
+        let tempFile = 0;
+        files.forEach((file) => {
+            tempFile++;
+            rmEmptyDir(`${path}/${file}`, 1);
+        });
+        if (tempFile === files.length && level !== 0) {
+            fs.rmdirSync(path);
+        }
+    } else {
+        level !== 0 && fs.rmdirSync(path);
+    }
+}
+
+/**
+ * 清空指定路径下的所有文件及文件夹
+ * @param {*} path
+ */
+function clearDir(path) {
+    emptyDir(path);
+    rmEmptyDir(path);
+}
