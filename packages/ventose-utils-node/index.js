@@ -1,5 +1,5 @@
 const {tools} = require("./libs/common");
-const {getFnNames} = require("./genDoc");
+const {getFnNames} = require("./libs/genDoc");
 
 let fnNames = getFnNames();
 

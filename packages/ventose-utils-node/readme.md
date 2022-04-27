@@ -52,6 +52,32 @@
 </details>
 
 <details>
+  <summary> pathC </summary>
+  <br>
+  
+```js
+/**
+ * path.resolve(process.cwd(),...args) 简写
+ * @param  {...any} args
+ * @returns
+ */
+```
+</details>
+
+<details>
+  <summary> pathD </summary>
+  <br>
+  
+```js
+/**
+ * path.resolve(__dirname,...args) 简写
+ * @param  {...any} args
+ * @returns
+ */
+```
+</details>
+
+<details>
   <summary> pathR </summary>
   <br>
   

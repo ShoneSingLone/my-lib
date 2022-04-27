@@ -11,6 +11,7 @@
     },
     "scripts": {
         "dev": "nodemon ./dev.js",
+        "doc": "node ./prepublish.js",
         "up": "npm version patch && npm publish --access public"
     },
     "license": "MIT",

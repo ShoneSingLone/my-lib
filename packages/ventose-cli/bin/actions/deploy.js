@@ -2,12 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const SftpClient = require("ssh2-sftp-client");
 
-const cwdPath = (...args) => {
+const pathCwd = (...args) => {
   return path.resolve.apply(path, [process.cwd()].concat(args));
 };
 
 function log(fnGetContent) {
-  console.log("====>" fnGetContent());
+  console.log("====>", fnGetContent());
   if (log.continue) {
     setTimeout(() => {
       log(fnGetContent);
@@ -23,7 +23,7 @@ async function uploadDir(serverInfo) {
     client.on("upload", (info) => {
       console.log(`Listener: Uploaded ${info.source}`);
     });
-    return await client.uploadDir(cwdPath(localDir), remoteDir);
+    return await client.uploadDir(pathCwd(localDir), remoteDir);
   } finally {
     client.end();
   }
@@ -43,11 +43,11 @@ exports.ActionDeploy = {
 
     if (options.configs) {
       if (fs.existsSync(options.configs)) {
-        console.log("====>" `exec deploy`);
+        console.log("====>"`exec deploy`);
         log.continue = true;
         log(fnCount);
         try {
-          const { deploy: configs } = require(cwdPath(options.configs));
+          const { deploy: configs } = require(pathCwd(options.configs));
           await uploadDir(configs);
         } catch (error) {
           console.error(error);
@@ -63,7 +63,7 @@ exports.ActionDeploy = {
       return;
     }
     if (options.getConfigs) {
-      console.log("====>" `Exec GetConfigsTemplate`);
+      console.log("====>"`Exec GetConfigsTemplate`);
       const configsContent = `/**/
 module.exports = {
   deploy: {
@@ -75,10 +75,10 @@ module.exports = {
     remoteDir: "/root/ventose/static/balabalba ",
   },
 };`;
-      var targetPath = cwdPath("./privateConfigs.js");
+      var targetPath = pathCwd("./privateConfigs.js");
       fs.writeFileSync(targetPath, configsContent);
       /* 注意敏感信息不要提交 */
-      const path_gitignore = cwdPath(".gitignore");
+      const path_gitignore = pathCwd(".gitignore");
       if (fs.existsSync(path_gitignore)) {
         fs.appendFileSync(path_gitignore, "\nprivateConfigs.js");
       }
