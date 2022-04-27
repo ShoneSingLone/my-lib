@@ -1,8 +1,8 @@
 {
     "name": "@ventose/cli",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "description": "常用的命令行工具",
-    "Keywords": "cli scp deploy",
+    "Keywords": "cli scp deploy 前端部署",
     "main": "./bin/index.js",
     "author": "https://github.com/ShoneSingLone",
     "bin": {
