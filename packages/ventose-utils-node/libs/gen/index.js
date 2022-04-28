@@ -4,18 +4,20 @@ const { getFnNames, newLine } = require("./doc");
 function genIndex() {
   let fnNames = getFnNames();
   const libIndexFilePath = "./lodash_node.js";
-  tools.fs.writeFileSync(libIndexFilePath, `const { tools } = require("./libs/common");
+  tools.fs.writeFileSync(
+    libIndexFilePath,
+    `const { tools } = require("./libs/common");
 
-const lodash_node = { _n: tools._ };\r\n\r\n`);
-  tools._.each(fnNames, (fnName, index) => {
-    const content = `const { ${fnName} } = require("./libs/fp/${fnName}");
-tools._.${fnName} = ${fnName};\r\n\r\n`;
-    tools.fs.appendFileSync(libIndexFilePath, content);
-  });
-
-  const exportsContent = `\r\n/*_n:lodash_node*/
-module.exports = lodash_node;`;
-  tools.fs.appendFileSync(libIndexFilePath, exportsContent);
+/*_n:lodash_node*/
+module.exports._n = {
+    ...tools._,
+${fnNames
+  .map((fnName) => {
+    return `    ${fnName} : require("./libs/fp/${fnName}").${fnName},`;
+  })
+  .join("\r\n")}
+};`
+  );
 }
 
 exports.genIndex = genIndex;
