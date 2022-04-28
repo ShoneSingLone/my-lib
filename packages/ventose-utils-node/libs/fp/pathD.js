@@ -5,6 +5,6 @@ const { tools } = require("../common");
  * @returns
  */
 function pathD(...args) {
-  return tools.path.resolve.applay(tools.path, [__dirname, ...args]);
+  return tools.path.resolve.apply(tools.path, [__dirname, ...args]);
 }
 exports.pathD = pathD;
