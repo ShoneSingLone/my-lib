@@ -8,7 +8,7 @@ const { dirName } = require("./dirName");
 async function asyncSafeMakeDir(path_dir) {
   if (!path_dir) {
     console.error("未提供必要参数");
-    return;
+    return false;
   }
   if (tools.fs.existsSync(path_dir)) {
     return true;
@@ -20,6 +20,7 @@ async function asyncSafeMakeDir(path_dir) {
     console.log("🚀dirParent", path_dirParent);
   }
   await tools.asyncFs.mkdir(path_dir);
+  return true;
 }
 
 exports.asyncSafeMakeDir = asyncSafeMakeDir;

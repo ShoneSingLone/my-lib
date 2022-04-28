@@ -2,11 +2,11 @@ const { tools } = require("../common");
 
 /**
  * 删除目录
- * @param {*} pathName
+ * @param {*} string_pathName
  * @returns
  */
-function asyncRmDir(pathName) {
-  return tools.asyncFs.unlink(pathName);
+function asyncRmDir(string_pathName) {
+  return tools.asyncFs.unlink(string_pathName);
 }
 
 exports.asyncRmDir = asyncRmDir;

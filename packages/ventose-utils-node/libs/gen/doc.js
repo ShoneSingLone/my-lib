@@ -9,8 +9,10 @@ function getFnNames() {
 }
 
 function genMdSummary(title, content) {
+  const isDeprecated = content.indexOf("@Deprecated") > -1;
+  const style = isDeprecated ? ` style="color:gray;text-decoration-line: line-through;"` : "";
   return `\r\n<details>
-  <summary> ${title} </summary>
+  <summary${style}> ${title} </summary>
   <br>
   ${content}
 </details>

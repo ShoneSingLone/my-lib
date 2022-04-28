@@ -22,3 +22,4 @@ yarn-error.log*
 *.vscode-test
 *.vsix
 privateConfigs.js
+packages/ventose-utils-node/test/willdeleteAll
