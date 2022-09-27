@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const {
   AgentProtocol,
@@ -7,30 +7,31 @@ const {
   CygwinAgent,
   OpenSSHAgent,
   PageantAgent,
-} = require('./agent.js');
+} = require("./agent.js");
+const { Ssh2Client } = require("./single/Ssh2Client");
 const {
   SSHTTPAgent: HTTPAgent,
   SSHTTPSAgent: HTTPSAgent,
-} = require('./http-agents.js');
-const { parseKey } = require('./protocol/keyParser.js');
+} = require("./http-agents.js");
+const { parseKey } = require("./protocol/keyParser.js");
 const {
   flagsToString,
   OPEN_MODE,
   STATUS_CODE,
   stringToFlags,
-} = require('./protocol/SFTP.js');
+} = require("./protocol/SFTP.js");
 
 module.exports = {
   AgentProtocol,
   BaseAgent,
   createAgent,
-  Client: require('./client.js'),
+  Client: require("./client.js"),
   CygwinAgent,
   HTTPAgent,
   HTTPSAgent,
   OpenSSHAgent,
   PageantAgent,
-  Server: require('./server.js'),
+  Server: require("./server.js"),
   utils: {
     parseKey,
     sftp: {
@@ -40,4 +41,5 @@ module.exports = {
       stringToFlags,
     },
   },
+  Ssh2Client,
 };
