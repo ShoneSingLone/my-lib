@@ -2,22 +2,31 @@ const { tools } = require("../common");
 const { getFnNames, newLine } = require("./doc");
 
 function genIndex() {
-  let fnNames = getFnNames();
+  let fnNames = getFnNames("./libs/fp");
   const libIndexFilePath = "./lodash_node.js";
-  tools.fs.writeFileSync(
-    libIndexFilePath,
-    `const { tools } = require("./libs/common");
 
-/*_n:lodash_node*/
-module.exports._n = {
-    ...tools._,
-${fnNames
-  .map((fnName) => {
-    return `    ${fnName} : require("./libs/fp/${fnName}").${fnName},`;
-  })
-  .join("\r\n")}
-};`
-  );
+  const fpContent = `const { tools } = require("./libs/common");
+
+  /*_n:lodash_node*/
+  module.exports._n = {
+      ...tools._,
+  ${fnNames
+    .map((fnName) => {
+      return `    ${fnName} : require("./libs/fp/${fnName}").${fnName},`;
+    })
+    .join("\r\n")}
+  };`;
+
+  let singleNames = getFnNames("./libs/single");
+
+  const singleContent = singleNames
+    .map((fnName) => {
+      return `module.exports.${fnName} = require("./libs/single/${fnName}").${fnName};`;
+    })
+    .join("\r\n");
+
+  const allContent = `${fpContent}\r\n${singleContent}`;
+  tools.fs.writeFileSync(libIndexFilePath, allContent);
 }
 
 exports.genIndex = genIndex;

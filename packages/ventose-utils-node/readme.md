@@ -1,6 +1,7 @@
 # Ventose-utils-node
+
 <details>
-  <summary> asyncAllDirAndFile </summary>
+  <summary> ./libs/fp/asyncAllDirAndFile.js </summary>
   <br>
   
 ```js
@@ -16,7 +17,7 @@
 </details>
 
 <details>
-  <summary> asyncCpDir </summary>
+  <summary> ./libs/fp/asyncCpDir.js </summary>
   <br>
   
 ```js
@@ -30,7 +31,7 @@
 </details>
 
 <details>
-  <summary> asyncEmptyDir </summary>
+  <summary> ./libs/fp/asyncEmptyDir.js </summary>
   <br>
   
 ```js
@@ -42,7 +43,7 @@
 </details>
 
 <details>
-  <summary> asyncRmDir </summary>
+  <summary> ./libs/fp/asyncRmDir.js </summary>
   <br>
   
 ```js
@@ -55,7 +56,7 @@
 </details>
 
 <details>
-  <summary> asyncSafeMakeDir </summary>
+  <summary> ./libs/fp/asyncSafeMakeDir.js </summary>
   <br>
   
 ```js
@@ -68,7 +69,7 @@
 </details>
 
 <details>
-  <summary> asyncSleep </summary>
+  <summary> ./libs/fp/asyncSleep.js </summary>
   <br>
   
 ```js
@@ -82,7 +83,7 @@
 </details>
 
 <details>
-  <summary> asyncWriteFile </summary>
+  <summary> ./libs/fp/asyncWriteFile.js </summary>
   <br>
   
 ```js
@@ -95,7 +96,7 @@
 </details>
 
 <details>
-  <summary> dirName </summary>
+  <summary> ./libs/fp/dirName.js </summary>
   <br>
   
 ```js
@@ -108,7 +109,7 @@
 </details>
 
 <details>
-  <summary> getPathD </summary>
+  <summary> ./libs/fp/getPathD.js </summary>
   <br>
   
 ```js
@@ -125,7 +126,7 @@
 </details>
 
 <details>
-  <summary> pathC </summary>
+  <summary> ./libs/fp/pathC.js </summary>
   <br>
   
 ```js
@@ -138,7 +139,7 @@
 </details>
 
 <details>
-  <summary style="color:gray;text-decoration-line: line-through;"> pathD </summary>
+  <summary style="color:gray;text-decoration-line: line-through;"> ./libs/fp/pathD.js </summary>
   <br>
   
 ```js
@@ -154,7 +155,7 @@
 </details>
 
 <details>
-  <summary> pathR </summary>
+  <summary> ./libs/fp/pathR.js </summary>
   <br>
   
 ```js
