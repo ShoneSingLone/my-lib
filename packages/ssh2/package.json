@@ -9,8 +9,10 @@
     "node": ">=10.16.0"
   },
   "dependencies": {
+    "@ventose/utils-node": "^0.0.11",
     "asn1": "^0.2.4",
-    "bcrypt-pbkdf": "^1.0.2"
+    "bcrypt-pbkdf": "^1.0.2",
+    "single-line-log": "^1.1.2"
   },
   "devDependencies": {
     "@mscdex/eslint-config": "^1.1.0",
