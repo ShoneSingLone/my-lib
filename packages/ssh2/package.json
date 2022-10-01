@@ -1,7 +1,7 @@
 {
   "name": "@ventose/ssh2",
   "ssh2_version": "1.11.0",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "Brian White <mscdex@mscdex.net>",
   "description": "SSH2 client and server modules written in pure JavaScript for node.js",
   "main": "./lib/index.js",
@@ -27,6 +27,7 @@
     "rebuild": "node install.js",
     "test": "node test/test.js",
     "lint": "eslint --cache --report-unused-disable-directives --ext=.js .eslintrc.js examples lib test",
+    "up": "npm version patch && npm publish --access public",
     "lint:fix": "npm run lint -- --fix"
   },
   "keywords": [
