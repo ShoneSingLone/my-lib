@@ -1,4 +1,7 @@
+'use strict';
+
 const path = require("path");
+const slog = require("single-line-log").stdout;
 const Client = require("../index").Client;
 const { asyncAllDirAndFile } = require("@ventose/utils-node")._n;
 
@@ -16,7 +19,7 @@ const ssh2Client = new Ssh2Client({
 
 ssh2Client.deploy();
 
- * @param {*} configs 
+ * @param {*} configs
  */
 function Ssh2Client(configs) {
   this.configs = configs;
@@ -38,9 +41,13 @@ function Ssh2Client(configs) {
       path.join(remoteBaseUrl, i.split(localDirBaseName)[1]),
     ]);
 
+    const totle = remote_files.length || 1;
+    let current = 0;
+
     while ((remoteTarget = remote_files.pop())) {
       const [local, remote] = remoteTarget;
       await this.asyncUploadFile(local, remote);
+      slog(`🚀${local}\r\n[${Number((++current / totle) * 100).toFixed(2)}%]\r\n`);
     }
   };
 

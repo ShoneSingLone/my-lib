@@ -1,6 +1,6 @@
 "use strict";
 const readline = require("readline");
-var slog = require("single-line-log").stdout;
+const slog = require("single-line-log").stdout;
 const EventEmitter = require("events");
 const fs = require("fs");
 const { constants } = fs;
@@ -133,14 +133,14 @@ const bufferParser = makeBufferParser();
 const fakeStderr = {
   readable: false,
   writable: false,
-  push: (data) => {},
-  once: () => {},
-  on: () => {},
-  emit: () => {},
-  end: () => {},
+  push: (data) => { },
+  once: () => { },
+  on: () => { },
+  emit: () => { },
+  end: () => { },
 };
 
-function noop() {}
+function noop() { }
 
 // Emulates enough of `Channel` to be able to be used as a drop-in replacement
 // in order to process incoming data with as little overhead as possible
@@ -365,8 +365,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} OPEN`
       );
   }
@@ -395,8 +395,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} CLOSE`
       );
   }
@@ -722,8 +722,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} REMOVE`
       );
   }
@@ -754,8 +754,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} RENAME`
       );
   }
@@ -805,8 +805,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} MKDIR`
       );
   }
@@ -833,8 +833,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} RMDIR`
       );
   }
@@ -899,22 +899,22 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = {
       cb: doFilter
         ? (err, list) => {
-            if (typeof cb !== "function") return;
-            if (err) return cb(err);
+          if (typeof cb !== "function") return;
+          if (err) return cb(err);
 
-            for (let i = list.length - 1; i >= 0; --i) {
-              if (list[i].filename === "." || list[i].filename === "..")
-                list.splice(i, 1);
-            }
-
-            cb(undefined, list);
+          for (let i = list.length - 1; i >= 0; --i) {
+            if (list[i].filename === "." || list[i].filename === "..")
+              list.splice(i, 1);
           }
+
+          cb(undefined, list);
+        }
         : cb,
     };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} READDIR`
       );
   }
@@ -943,8 +943,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} FSTAT`
       );
   }
@@ -971,8 +971,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} STAT`
       );
   }
@@ -999,8 +999,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} LSTAT`
       );
   }
@@ -1027,8 +1027,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} OPENDIR`
       );
   }
@@ -1076,8 +1076,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} SETSTAT`
       );
   }
@@ -1127,8 +1127,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} FSETSTAT`
       );
   }
@@ -1221,8 +1221,8 @@ class SFTP extends EventEmitter {
     };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} READLINK`
       );
   }
@@ -1261,8 +1261,8 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} SYMLINK`
       );
   }
@@ -1297,8 +1297,8 @@ class SFTP extends EventEmitter {
     };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} REALPATH`
       );
   }
@@ -1487,10 +1487,9 @@ class SFTP extends EventEmitter {
     this._requests[reqid] = { cb };
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
-        `SFTP: Outbound: ${
-          isBuffered ? "Buffered" : "Sending"
+    this._debug
+      && this._debug(
+        `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"
         } fsync@openssh.com`
       );
   }
@@ -1615,18 +1614,18 @@ class SFTP extends EventEmitter {
     */
     let p = 0;
     const buf = Buffer.allocUnsafe(
-      4 +
-        1 +
-        4 +
-        4 +
-        9 +
-        4 +
-        srcHandle.length +
-        8 +
-        8 +
-        4 +
-        dstHandle.length +
-        8
+      4
+      + 1
+      + 4
+      + 4
+      + 9
+      + 4
+      + srcHandle.length
+      + 8
+      + 8
+      + 4
+      + dstHandle.length
+      + 8
     );
 
     writeUInt32BE(buf, buf.length - 4, p);
@@ -1703,8 +1702,8 @@ class SFTP extends EventEmitter {
     if (handleLen) buf.set(handle, (p += 4));
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} HANDLE`
       );
   }
@@ -1737,8 +1736,8 @@ class SFTP extends EventEmitter {
     writeUInt32BE(buf, 0, p); // Empty language tag
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} STATUS`
       );
   }
@@ -1773,8 +1772,8 @@ class SFTP extends EventEmitter {
     }
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} DATA`
       );
   }
@@ -1887,8 +1886,8 @@ class SFTP extends EventEmitter {
     }
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} NAME`
       );
   }
@@ -1920,8 +1919,8 @@ class SFTP extends EventEmitter {
     }
 
     const isBuffered = sendOrBuffer(this, buf);
-    this._debug &&
-      this._debug(
+    this._debug
+      && this._debug(
         `SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} ATTRS`
       );
   }
@@ -2009,8 +2008,8 @@ function read_(self, handle, buf, off, len, position, cb, req_) {
   self._requests[reqid] = req;
 
   const isBuffered = sendOrBuffer(self, out);
-  self._debug &&
-    self._debug(`SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} READ`);
+  self._debug
+    && self._debug(`SFTP: Outbound: ${isBuffered ? "Buffered" : "Sending"} READ`);
 }
 
 function fastXfer(src, dst, srcPath, dstPath, opts, cb) {
@@ -2024,23 +2023,23 @@ function fastXfer(src, dst, srcPath, dstPath, opts, cb) {
     cb = opts;
   } else if (typeof opts === "object" && opts !== null) {
     if (
-      typeof opts.concurrency === "number" &&
-      opts.concurrency > 0 &&
-      !isNaN(opts.concurrency)
+      typeof opts.concurrency === "number"
+      && opts.concurrency > 0
+      && !isNaN(opts.concurrency)
     ) {
       concurrency = opts.concurrency;
     }
     if (
-      typeof opts.chunkSize === "number" &&
-      opts.chunkSize > 0 &&
-      !isNaN(opts.chunkSize)
+      typeof opts.chunkSize === "number"
+      && opts.chunkSize > 0
+      && !isNaN(opts.chunkSize)
     ) {
       chunkSize = opts.chunkSize;
     }
     if (
-      typeof opts.fileSize === "number" &&
-      opts.fileSize > 0 &&
-      !isNaN(opts.fileSize)
+      typeof opts.fileSize === "number"
+      && opts.fileSize > 0
+      && !isNaN(opts.fileSize)
     ) {
       fileSize = opts.fileSize;
     }
@@ -2149,24 +2148,9 @@ function fastXfer(src, dst, srcPath, dstPath, opts, cb) {
 
           function writeCb(err) {
             if (err) return onerror(err);
-
             total += nb;
-
-            /* // console.log(total,fsize);
-            //删除光标所在行
-            // readline.clearLine(process.stdout, 0);
-            //移动光标到行首
-            readline.cursorTo(process.stdout, 0, 0);
-
-
-
-            process.stdout.write(
-              `🚀uploading: ${(total / fsize) * 100}  ===========\r\n`,
-              "utf-8"
-            ); */
-
+            slog('🚀upload file:\n[' + (total / fsize) * 100 + '%]', );
             onstep && onstep(total, nb, fsize);
-
             if (nb < origChunkLen)
               return singleRead(datapos, dstpos + nb, origChunkLen - nb);
 
@@ -2319,8 +2303,8 @@ function attrsToBytes(attrs) {
       ATTRS_BUF[nb++] = mode;
     }
     if (
-      (typeof attrs.atime === "number" || isDate(attrs.atime)) &&
-      (typeof attrs.mtime === "number" || isDate(attrs.mtime))
+      (typeof attrs.atime === "number" || isDate(attrs.atime))
+      && (typeof attrs.mtime === "number" || isDate(attrs.mtime))
     ) {
       const atime = toUnixTimestamp(attrs.atime);
       const mtime = toUnixTimestamp(attrs.mtime);
@@ -2361,40 +2345,40 @@ function modeNum(mode) {
 }
 
 const stringFlagMap = {
-  r: OPEN_MODE.READ,
+  "r": OPEN_MODE.READ,
   "r+": OPEN_MODE.READ | OPEN_MODE.WRITE,
-  w: OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE,
-  wx: OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
-  xw: OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
+  "w": OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE,
+  "wx": OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
+  "xw": OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
   "w+": OPEN_MODE.TRUNC | OPEN_MODE.CREAT | OPEN_MODE.READ | OPEN_MODE.WRITE,
   "wx+":
-    OPEN_MODE.TRUNC |
-    OPEN_MODE.CREAT |
-    OPEN_MODE.READ |
-    OPEN_MODE.WRITE |
-    OPEN_MODE.EXCL,
+    OPEN_MODE.TRUNC
+    | OPEN_MODE.CREAT
+    | OPEN_MODE.READ
+    | OPEN_MODE.WRITE
+    | OPEN_MODE.EXCL,
   "xw+":
-    OPEN_MODE.TRUNC |
-    OPEN_MODE.CREAT |
-    OPEN_MODE.READ |
-    OPEN_MODE.WRITE |
-    OPEN_MODE.EXCL,
-  a: OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE,
-  ax: OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
-  xa: OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
+    OPEN_MODE.TRUNC
+    | OPEN_MODE.CREAT
+    | OPEN_MODE.READ
+    | OPEN_MODE.WRITE
+    | OPEN_MODE.EXCL,
+  "a": OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE,
+  "ax": OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
+  "xa": OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.WRITE | OPEN_MODE.EXCL,
   "a+": OPEN_MODE.APPEND | OPEN_MODE.CREAT | OPEN_MODE.READ | OPEN_MODE.WRITE,
   "ax+":
-    OPEN_MODE.APPEND |
-    OPEN_MODE.CREAT |
-    OPEN_MODE.READ |
-    OPEN_MODE.WRITE |
-    OPEN_MODE.EXCL,
+    OPEN_MODE.APPEND
+    | OPEN_MODE.CREAT
+    | OPEN_MODE.READ
+    | OPEN_MODE.WRITE
+    | OPEN_MODE.EXCL,
   "xa+":
-    OPEN_MODE.APPEND |
-    OPEN_MODE.CREAT |
-    OPEN_MODE.READ |
-    OPEN_MODE.WRITE |
-    OPEN_MODE.EXCL,
+    OPEN_MODE.APPEND
+    | OPEN_MODE.CREAT
+    | OPEN_MODE.READ
+    | OPEN_MODE.WRITE
+    | OPEN_MODE.EXCL,
 };
 
 function stringToFlags(str) {
@@ -2725,8 +2709,8 @@ const CLIENT_HANDLERS = {
         bufferParser.clear();
 
         if (nb !== undefined) {
-          sftp._debug &&
-            sftp._debug(`SFTP: Inbound: Received DATA (id:${reqID}, ${nb})`);
+          sftp._debug
+            && sftp._debug(`SFTP: Inbound: Received DATA (id:${reqID}, ${nb})`);
           req.cb(undefined, req.buffer, nb);
           return;
         }
@@ -2735,8 +2719,8 @@ const CLIENT_HANDLERS = {
         bufferParser.clear();
 
         if (data !== undefined) {
-          sftp._debug &&
-            sftp._debug(
+          sftp._debug
+            && sftp._debug(
               `SFTP: Inbound: Received DATA (id:${reqID}, ${data.length})`
             );
           req.cb(undefined, data);
@@ -2747,8 +2731,8 @@ const CLIENT_HANDLERS = {
       const nb = bufferParser.skipString();
       bufferParser.clear();
       if (nb !== undefined) {
-        sftp._debug &&
-          sftp._debug(`SFTP: Inbound: Received DATA (id:${reqID}, ${nb})`);
+        sftp._debug
+          && sftp._debug(`SFTP: Inbound: Received DATA (id:${reqID}, ${nb})`);
         return;
       }
     }
@@ -2792,8 +2776,8 @@ const CLIENT_HANDLERS = {
         names.push({ filename, longname, attrs });
       }
       if (names !== undefined) {
-        sftp._debug &&
-          sftp._debug(
+        sftp._debug
+          && sftp._debug(
             `SFTP: Inbound: Received NAME (id:${reqID}, ${names.length})`
           );
         bufferParser.clear();
@@ -2866,8 +2850,8 @@ const CLIENT_HANDLERS = {
             if (stats.f_namemax === undefined) break;
             if (sftp._debug) {
               sftp._debug(
-                "SFTP: Inbound: Received EXTENDED_REPLY " +
-                  `(id:${reqID}, ${req.extended})`
+                "SFTP: Inbound: Received EXTENDED_REPLY "
+                + `(id:${reqID}, ${req.extended})`
               );
             }
             bufferParser.clear();
@@ -2890,8 +2874,8 @@ const CLIENT_HANDLERS = {
             if (limits.maxOpenHandles === undefined) break;
             if (sftp._debug) {
               sftp._debug(
-                "SFTP: Inbound: Received EXTENDED_REPLY " +
-                  `(id:${reqID}, ${req.extended})`
+                "SFTP: Inbound: Received EXTENDED_REPLY "
+                + `(id:${reqID}, ${req.extended})`
               );
             }
             bufferParser.clear();
@@ -2900,8 +2884,8 @@ const CLIENT_HANDLERS = {
           }
           default:
             // Unknown extended request
-            sftp._debug &&
-              sftp._debug(
+            sftp._debug
+              && sftp._debug(
                 `SFTP: Inbound: Received EXTENDED_REPLY (id:${reqID}, ???)`
               );
             bufferParser.clear();
@@ -2909,8 +2893,8 @@ const CLIENT_HANDLERS = {
             return;
         }
       } else {
-        sftp._debug &&
-          sftp._debug(
+        sftp._debug
+          && sftp._debug(
             `SFTP: Inbound: Received EXTENDED_REPLY (id:${reqID}, ???)`
           );
         bufferParser.clear();
@@ -3127,8 +3111,8 @@ const SERVER_HANDLERS = {
     if (attrs === undefined || handle.length > 256)
       return doFatalSFTPError(sftp, "Malformed FSETSTAT packet");
 
-    sftp._debug &&
-      sftp._debug(`SFTP: Inbound: Received FSETSTAT (id:${reqID})`);
+    sftp._debug
+      && sftp._debug(`SFTP: Inbound: Received FSETSTAT (id:${reqID})`);
 
     if (!sftp.emit("FSETSTAT", reqID, handle, attrs)) {
       // Automatically reject request if no handler for request type
@@ -3244,8 +3228,8 @@ const SERVER_HANDLERS = {
     if (path === undefined)
       return doFatalSFTPError(sftp, "Malformed REALPATH packet");
 
-    sftp._debug &&
-      sftp._debug(`SFTP: Inbound: Received REALPATH (id:${reqID})`);
+    sftp._debug
+      && sftp._debug(`SFTP: Inbound: Received REALPATH (id:${reqID})`);
 
     if (!sftp.emit("REALPATH", reqID, path)) {
       // Automatically reject request if no handler for request type
@@ -3304,8 +3288,8 @@ const SERVER_HANDLERS = {
     if (path === undefined)
       return doFatalSFTPError(sftp, "Malformed READLINK packet");
 
-    sftp._debug &&
-      sftp._debug(`SFTP: Inbound: Received READLINK (id:${reqID})`);
+    sftp._debug
+      && sftp._debug(`SFTP: Inbound: Received READLINK (id:${reqID})`);
 
     if (!sftp.emit("READLINK", reqID, path)) {
       // Automatically reject request if no handler for request type
@@ -3357,8 +3341,8 @@ const SERVER_HANDLERS = {
     if (bufferParser.avail()) extData = bufferParser.readRaw();
     bufferParser.clear();
 
-    sftp._debug &&
-      sftp._debug(`SFTP: Inbound: Received EXTENDED (id:${reqID})`);
+    sftp._debug
+      && sftp._debug(`SFTP: Inbound: Received EXTENDED (id:${reqID})`);
 
     if (!sftp.emit("EXTENDED", reqID, extName, extData)) {
       // Automatically reject request if no handler for request type
@@ -3458,7 +3442,7 @@ function ReadStream(sftp, path, options) {
     }
   }
 
-  this.on("end", function () {
+  this.on("end", function() {
     if (this.autoClose) this.destroy();
   });
 
@@ -3466,7 +3450,7 @@ function ReadStream(sftp, path, options) {
 }
 inherits(ReadStream, ReadableStream);
 
-ReadStream.prototype.open = function () {
+ReadStream.prototype.open = function() {
   if (this._opening) return;
 
   this._opening = true;
@@ -3488,7 +3472,7 @@ ReadStream.prototype.open = function () {
   });
 };
 
-ReadStream.prototype._read = function (n) {
+ReadStream.prototype._read = function(n) {
   if (!Buffer.isBuffer(this.handle))
     return this.once("open", () => this._read(n));
 
@@ -3562,7 +3546,7 @@ ReadStream.prototype._read = function (n) {
   pool.used = roundUpToMultipleOf8(pool.used + toRead);
 };
 
-ReadStream.prototype._destroy = function (err, cb) {
+ReadStream.prototype._destroy = function(err, cb) {
   if (this._opening && !Buffer.isBuffer(this.handle)) {
     this.once("open", closeStream.bind(null, this, cb, err));
     return;
@@ -3586,7 +3570,7 @@ function closeStream(stream, cb, err) {
   }
 }
 
-ReadStream.prototype.close = function (cb) {
+ReadStream.prototype.close = function(cb) {
   this.destroy(null, cb);
 };
 
@@ -3635,7 +3619,7 @@ function WriteStream(sftp, path, options) {
   if (options.encoding) this.setDefaultEncoding(options.encoding);
 
   // Node v6.x only
-  this.on("finish", function () {
+  this.on("finish", function() {
     if (this._writableState.finalCalled) return;
     if (this.autoClose) this.destroy();
   });
@@ -3644,12 +3628,12 @@ function WriteStream(sftp, path, options) {
 }
 inherits(WriteStream, WritableStream);
 
-WriteStream.prototype._final = function (cb) {
+WriteStream.prototype._final = function(cb) {
   if (this.autoClose) this.destroy();
   cb();
 };
 
-WriteStream.prototype.open = function () {
+WriteStream.prototype.open = function() {
   if (this._opening) return;
 
   this._opening = true;
@@ -3707,14 +3691,14 @@ WriteStream.prototype.open = function () {
   });
 };
 
-WriteStream.prototype._write = function (data, encoding, cb) {
+WriteStream.prototype._write = function(data, encoding, cb) {
   if (!Buffer.isBuffer(data)) {
     const err = new ERR_INVALID_ARG_TYPE("data", "Buffer", data);
     return this.emit("error", err);
   }
 
   if (!Buffer.isBuffer(this.handle)) {
-    return this.once("open", function () {
+    return this.once("open", function() {
       this._write(data, encoding, cb);
     });
   }
@@ -3731,9 +3715,9 @@ WriteStream.prototype._write = function (data, encoding, cb) {
   this.pos += data.length;
 };
 
-WriteStream.prototype._writev = function (data, cb) {
+WriteStream.prototype._writev = function(data, cb) {
   if (!Buffer.isBuffer(this.handle)) {
-    return this.once("open", function () {
+    return this.once("open", function() {
       this._writev(data, cb);
     });
   }
@@ -3764,7 +3748,7 @@ if (typeof WritableStream.prototype.destroy !== "function")
   WriteStream.prototype.destroy = ReadStream.prototype.destroy;
 
 WriteStream.prototype._destroy = ReadStream.prototype._destroy;
-WriteStream.prototype.close = function (cb) {
+WriteStream.prototype.close = function(cb) {
   if (cb) {
     if (this.isClosed) {
       process.nextTick(cb);
