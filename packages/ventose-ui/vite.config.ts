@@ -6,6 +6,16 @@ import path from "path";
 
 const isApp = process.env.type === "app";
 
+const globals = {
+  "ant-design-vue": "antd",
+  vue: "Vue",
+  jquery: "$",
+  lodash: "_",
+  dayjs: "dayjs",
+  moment: "dayjs",
+  axios: "axios",
+}
+
 const ConfigOptions = {
   plugins: [useVue(), useVueJsx()],
   resolve: {
@@ -16,7 +26,7 @@ const ConfigOptions = {
   },
   build: {
     minify: false,
-    outDir: "dist",
+    outDir: "libdist",
     /* 没有混缩 */
     lib: {
       formats: ["umd", "es"],
@@ -25,26 +35,10 @@ const ConfigOptions = {
       fileName: (format) => `VentoseUI.${format}.js`,
     },
     rollupOptions: {
-      external: [
-        "ant-design-vue",
-        "vue",
-        "jquery",
-        "lodash",
-        "moment",
-        "axios",
-        "vue-router",
-      ],
+      external: Object.keys(globals),
       plugins: [],
       output: {
-        globals: {
-          vue: "Vue",
-          "ant-design-vue": "antd",
-          jquery: "$",
-          lodash: "_",
-          dayjs: "dayjs",
-          moment: "dayjs",
-          axios: "axios",
-        },
+        globals
       },
     },
   },
