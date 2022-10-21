@@ -10,7 +10,7 @@
     "up": "npm version patch && npm publish --access public",
     "start": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "lint": "prettier --write ./src"
   },
   "dependencies": {
     "D": "^1.0.0",
@@ -29,6 +29,7 @@
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "less": "^4.1.3",
     "sass": "^1.55.0",
+    "prettier": "^2.2.1",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vue-tsc": "^0.40.4"
