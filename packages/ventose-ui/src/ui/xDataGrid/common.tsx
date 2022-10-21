@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { t_buttonOptions } from "../xButton/xButton";
 import { _ } from "../loadCommonUtil";
 import { ColumnProps } from "ant-design-vue/es/table";

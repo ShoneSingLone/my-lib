@@ -1,19 +1,18 @@
 {
   "name": "@ventose/ui",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.2",
   "type": "module",
-  "main": "distUI.es.js",
-  "module": "distUI.es.js",
-  "unpkg": "distUI.umd.js",
+  "main": "VentoseUI.es.js",
+  "module": "VentoseUI.es.js",
+  "unpkg": "VentoseUI.umd.js",
   "scripts": {
     "up": "npm version patch && npm publish --access public",
     "start": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
+    "build:app": "cross-env NODE_ENV=production cross-env type=app vite build",
     "lint": "prettier --write ./src"
   },
   "dependencies": {
-    "D": "^1.0.0",
     "ant-design-vue": "^3.2.13",
     "axios": "^1.1.2",
     "dayjs": "^1.11.5",
@@ -25,6 +24,7 @@
     "vue-router": "4"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "less": "^4.1.3",
