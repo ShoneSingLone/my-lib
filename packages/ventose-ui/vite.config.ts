@@ -9,11 +9,11 @@ const isApp = process.env.type === "app";
 const globals = {
   "ant-design-vue": "antd",
   vue: "Vue",
-  jquery: "$",
-  lodash: "_",
-  dayjs: "dayjs",
-  moment: "dayjs",
-  axios: "axios",
+  // jquery: "$",
+  // lodash: "_",
+  // dayjs: "dayjs",
+  // moment: "dayjs",
+  // axios: "axios",
 }
 
 const ConfigOptions = {
@@ -25,8 +25,8 @@ const ConfigOptions = {
     },
   },
   build: {
-    minify: false,
-    outDir: "libdist",
+    minify: true,
+    outDir: "dist",
     /* 没有混缩 */
     lib: {
       formats: ["umd", "es"],
