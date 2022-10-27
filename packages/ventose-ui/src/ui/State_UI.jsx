@@ -11,7 +11,8 @@ import { lStorage } from "./tools/storage";
 import { get, set } from "idb-keyval";
 
 /* 可以与外部通信，可以增改 */
-export const State_UI = reactive({
+
+let _State_UI = {
   language: lStorage["language"] || "zh-CN",
   onLanguageChange: false,
   LANGUAGE: {
@@ -21,6 +22,14 @@ export const State_UI = reactive({
   i18nMessage: {},
   /* 放svg文件的文件夹路径*/
   assetsSvgPath: "",
+  setAssetsBaseById(eleId) {
+    const img = document.getElementById(eleId);
+    if (img) {
+      const src = String(img.src);
+      const index = src.match(/assets(.*)/)?.index || 0;
+      this.assetsSvgPath = src.substring(0, index) + "assets/svg";
+    }
+  },
   /*i18n  使用 {变量名} 赋值 */
   $t(prop, payload = {}, i18nMessage = false) {
     /* this指向 */
@@ -38,7 +47,9 @@ export const State_UI = reactive({
     }
     return result;
   },
-});
+};
+
+export const State_UI = reactive(_State_UI);
 
 watch(
   () => State_UI.language,

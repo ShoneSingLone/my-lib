@@ -1,29 +1,28 @@
-<template>
-  <span :id="id" role="img" :aria-label="this.icon" class="xIcon anticon">
-    <div
-      class="next-loading next-open next-loading-inline"
-      style="width: 100%; height: 100%; overflow: hidden"
-    >
-      <div class="next-loading-tip">
-        <div class="next-loading-indicator" />
-      </div>
-      <div class="next-loading-component next-loading-wrap">
-        <div class="next-loading-masker" />
-        <div class="demo-basic">
-          <link rel="icon" type="image/svg+xml" href="/LoadingOutlined.svg" />
-        </div>
-      </div>
-    </div>
-  </span>
-</template>
-
 <script lang="jsx">
 // @ts-nocheck
 import { defineComponent, markRaw } from "vue";
 import { _ } from "../loadCommonUtil";
-import $ from "jquery";
 import { State_UI } from "../State_UI";
 import { get, set } from "idb-keyval";
+
+import InsideDeleteOutlined from "../../assets/svg/DeleteOutlined.svg";
+import InsideExclamationCircleOutlined from "../../assets/svg/ExclamationCircleOutlined.svg";
+import InsideLoadingOutlined from "../../assets/svg/LoadingOutlined.svg";
+import InsideSaveOutlined from "../../assets/svg/SaveOutlined.svg";
+import InsideSearchOutlined from "../../assets/svg/SearchOutlined.svg";
+import InsideSyncOutlined from "../../assets/svg/SyncOutlined.svg";
+import InsideUploadOutlined from "../../assets/svg/UploadOutlined.svg";
+
+/* const icons = import.meta.glob("../../assets/svg/*.svg"); */
+const insideIcons = {
+  InsideDeleteOutlined,
+  InsideExclamationCircleOutlined,
+  InsideLoadingOutlined,
+  InsideSaveOutlined,
+  InsideSearchOutlined,
+  InsideSyncOutlined,
+  InsideUploadOutlined,
+};
 
 export default defineComponent(
   markRaw({
@@ -31,9 +30,17 @@ export default defineComponent(
     props: ["icon"],
     data() {
       const id = "lazy-svg_" + this._.uid;
-      return { id };
+      return { id, svgIcon: null };
     },
     computed: {
+      baseAttrs() {
+        return {
+          id: this.id,
+          role: "img",
+          ariaLabel: this.icon,
+          class: "xIcon anticon",
+        };
+      },
       iconKey() {
         const _iconKey = _.camelCase(this.getIconPath()).replace(/\s/, "");
         return _iconKey;
@@ -45,27 +52,68 @@ export default defineComponent(
       },
       async setIcon() {
         if (!this.icon) return;
-        try {
-          let iconSvgString = await get(this.iconKey);
-          if (!iconSvgString || iconSvgString === "undefined") {
-            iconSvgString = await _.asyncLoadText(this.getIconPath());
-            await set(this.iconKey, iconSvgString);
-          }
 
-          if (iconSvgString) {
-            const $svg = $(iconSvgString)
-              .css("height", "100%")
-              .css("width", "100%");
-            let targetDom = await _.ensureValueDone(() =>
-              document.getElementById(this.id)
-            );
-            targetDom.innerHTML = $svg[0].outerHTML;
-            targetDom.id = this.id;
+        try {
+          let SvgIconAny = await (async () => {
+            /* 已缓存为组件 */
+            let _SvgIconAny = insideIcons[this.icon];
+            if (_SvgIconAny) {
+              return _SvgIconAny;
+            }
+            /* indexedDB 缓存成字符串 */
+            _SvgIconAny = await get(this.iconKey);
+            if (_SvgIconAny) {
+              return _SvgIconAny;
+            }
+            try {
+              /* public asset remote 加载 svg 字符串 */
+              _SvgIconAny = await _.asyncLoadText(this.getIconPath());
+            } catch (error) {}
+            return _SvgIconAny;
+          })();
+
+          if (_.isString(SvgIconAny) && SvgIconAny.length > 0) {
+            const SvgComponentByString = {
+              name: this.icon,
+              template: SvgIconAny,
+            };
+            /* indexedDB 缓存 字符串*/
+            await set(this.iconKey, SvgIconAny);
+            /* 内存 缓存 */
+            insideIcons[this.icon] = SvgComponentByString;
+            this.svgIcon = <SvgComponentByString {...this.baseAttrs} />;
+          } else if (SvgIconAny?.render || SvgIconAny?.template) {
+            this.svgIcon = <SvgIconAny {...this.baseAttrs} />;
+          } else {
+            console.error("component xIcon miss svg: " + this.icon);
           }
         } catch (error) {
           console.error(error);
         }
       },
+    },
+    render() {
+      if (this.svgIcon) {
+        return this.svgIcon;
+      }
+      return (
+        <span {...this.baseAttrs}>
+          <div
+            class="next-loading next-open next-loading-inline"
+            style="width: 100%; height: 100%; overflow: hidden"
+          >
+            <div class="next-loading-tip">
+              <div class="next-loading-indicator" />
+            </div>
+            <div class="next-loading-component next-loading-wrap">
+              <div class="next-loading-masker" />
+              <div class="demo-basic">
+                <InsideLoadingOutlined />
+              </div>
+            </div>
+          </div>
+        </span>
+      );
     },
     watch: {
       icon: {
@@ -82,6 +130,11 @@ export default defineComponent(
 <style lang="scss">
 .xIcon {
   width: 16px;
+  height: 16px;
+  &.auto-size {
+    width: unset;
+    height: unset;
+  }
 }
 
 div[id^="lazy-svg_"] {

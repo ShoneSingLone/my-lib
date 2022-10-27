@@ -28,6 +28,8 @@ import { State_UI, Cpt_UI_locale } from "./State_UI";
 import dayjs from "dayjs";
 import { RegexFn, FormRules } from "./xForm/FormRules";
 
+import { Utils } from "./common";
+
 /* @ts-ignore */
 window.dayjs = dayjs;
 /* @ts-ignore */
@@ -75,6 +77,7 @@ const components = {
   ...componentMyUI,
 };
 
+export { Utils as Utils };
 export { UI as UI };
 export { dayjs as moment };
 export { dayjs as dayjs };

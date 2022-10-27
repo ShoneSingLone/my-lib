@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import { _ } from "./loadCommonUtil";
 
 /**
@@ -68,26 +67,23 @@ export const MutatingProps = (item, prop, val = null) => {
 
 /*
 (() => {
-	console.time('duration');
-	const max = [...new Array(10000)].map((i, ii) => {
-		const o = Date.now();
-		let count = 0,
-			c = Date.now();
-		while (c <= o) {
-			count++;
-			c = Date.now();
-		}
-		return count;
-	}).sort((a, b) => b - a)[0];
-	console.log(max);
-	console.timeEnd('duration'); //Max:11815 duration: 10010.89404296875 ms //count没超过两万，再做点其他计算，应该达不到这个数
+  console.time('duration');
+  const max = [...new Array(10000)].map((i, ii) => {
+    const o = Date.now();
+    let count = 0,
+      c = Date.now();
+    while (c <= o) {
+      count++;
+      c = Date.now();
+    }
+    return count;
+  }).sort((a, b) => b - a)[0];
+  console.log(max);
+  console.timeEnd('duration'); //Max:11815 duration: 10010.89404296875 ms //count没超过两万，再做点其他计算，应该达不到这个数
 })();*/
 
 export const Utils = {
-  dateFormat(date, format) {
-    if (!format) {
-      format = "YYYY-MM-DD";
-    }
+  dateFormat(date, format = "YYYY-MM-DD") {
     if (format === 1) {
       format = "YYYY-MM-DD HH:mm:ss";
     }

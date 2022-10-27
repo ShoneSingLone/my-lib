@@ -154,9 +154,11 @@ export default defineComponent({
   },
   methods: {
     async handlePaginationChange(pagination) {
-      this.configs.isLoading = true;
-      await this.configs.onPaginationChange(pagination);
-      this.configs.isLoading = false;
+      if (this?.configs?.onPaginationChange) {
+        this.configs.isLoading = true;
+        await this.configs.onPaginationChange(pagination);
+        this.configs.isLoading = false;
+      }
     },
   },
   render() {

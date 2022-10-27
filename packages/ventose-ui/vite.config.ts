@@ -3,11 +3,13 @@ import { defineConfig } from "vite";
 import useVue from "@vitejs/plugin-vue";
 import useVueJsx from "@vitejs/plugin-vue-jsx";
 import path from "path";
+import svgHelper from "./plugins/vite/svg";
+
 
 const isApp = process.env.type === "app";
 
 const ConfigOptions = {
-  plugins: [useVue(), useVueJsx()],
+  plugins: [useVue(), useVueJsx(), svgHelper()],
   resolve: {
     alias: {
       vue: "vue/dist/vue.esm-bundler.js",

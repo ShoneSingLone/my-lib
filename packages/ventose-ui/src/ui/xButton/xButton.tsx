@@ -5,28 +5,28 @@ import { _ } from "../loadCommonUtil";
 import { State_UI } from "../State_UI";
 import { Button } from "ant-design-vue";
 
-const SaveOutlined = (
-  <link rel="icon" type="image/svg+xml" href="/SaveOutlined.svg" />
-);
-const SearchOutlined = (
-  <link rel="icon" type="image/svg+xml" href="/SearchOutlined.svg" />
-);
-const UploadOutlined = (
-  <link rel="icon" type="image/svg+xml" href="/UploadOutlined.svg" />
-);
-const DeleteOutlined = (
-  <link rel="icon" type="image/svg+xml" href="/DeleteOutlined.svg" />
-);
-const SyncOutlined = (
-  <link rel="icon" type="image/svg+xml" href="/SyncOutlined.svg" />
-);
 /*$t 可能会变，所以每次render用新的数据*/
 const BTN_PRESET_MAP = {
-  query: () => ({ icon: SearchOutlined, text: State_UI.$t("查询").label }),
-  refresh: () => ({ icon: SyncOutlined, text: State_UI.$t("刷新").label }),
-  save: () => ({ icon: SaveOutlined, text: State_UI.$t("保存").label }),
-  upload: () => ({ icon: UploadOutlined, text: State_UI.$t("上传").label }),
-  delete: () => ({ icon: DeleteOutlined, text: State_UI.$t("删除").label }),
+  query: () => ({
+    icon: <xIcon class="x-button_icon-wrapper" icon="InsideSearchOutlined" />,
+    text: State_UI.$t("查询").label,
+  }),
+  refresh: () => ({
+    icon: <xIcon class="x-button_icon-wrapper" icon="InsideSyncOutlined" />,
+    text: State_UI.$t("刷新").label,
+  }),
+  save: () => ({
+    icon: <xIcon class="x-button_icon-wrapper" icon="InsideSaveOutlined" />,
+    text: State_UI.$t("保存").label,
+  }),
+  upload: () => ({
+    icon: <xIcon class="x-button_icon-wrapper" icon="InsideUploadOutlined" />,
+    text: State_UI.$t("上传").label,
+  }),
+  delete: () => ({
+    icon: <xIcon class="x-button_icon-wrapper" icon="InsideDeleteOutlined" />,
+    text: State_UI.$t("删除").label,
+  }),
 };
 
 export type t_buttonOptions = {
@@ -38,6 +38,19 @@ export default defineComponent({
   name: "xButton",
   components: {
     Button,
+  },
+  beforeMount() {
+    /* 预置 */
+    const presetFn = BTN_PRESET_MAP[this.configs.preset];
+    if (presetFn) {
+      const preset = presetFn();
+      this.configs.text = (
+        <>
+          {preset.icon}
+          <span class="ml4">{preset.text}</span>
+        </>
+      );
+    }
   },
   props: {
     payload: {
@@ -88,17 +101,6 @@ export default defineComponent({
       if (_.isFunction(this.$slots?.default)) {
         return this.$slots.default(this);
       }
-      /* 预置 */
-      const presetFn = BTN_PRESET_MAP[this.configs.preset];
-      if (presetFn) {
-        const preset = presetFn();
-        return (
-          <span class="btn-preset">
-            {preset.icon}
-            {preset.text}
-          </span>
-        );
-      }
       /* text作为render */
       if (_.isFunction(this.configs.text)) {
         return this.configs.text(this) || "";
@@ -118,10 +120,10 @@ export default defineComponent({
   created() {},
   methods: {
     async onClick() {
-      if (_.isFunction(this.configs.onClick)) {
+      if (_.isFunction(this?.configs?.onClick)) {
         this.loading = true;
         try {
-          await this.configs.onClick(this);
+          await this.configs.onClick.call(this.configs, this);
         } catch (e) {
           console.error(e);
         } finally {
@@ -137,7 +139,7 @@ export default defineComponent({
     }
     return (
       <Button
-        class="flex middle"
+        class="x-button"
         onClick={this.onClick}
         loading={this.loading}
         disabled={!!this.disabled}

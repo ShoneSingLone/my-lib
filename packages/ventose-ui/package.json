@@ -8,7 +8,8 @@
   "scripts": {
     "up": "npm version patch && npm publish --access public",
     "start": "vite --open",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "npm run build:app && npm run build:lib",
+    "build:lib": "vue-tsc --noEmit && vite build",
     "build:app": "cross-env NODE_ENV=production cross-env type=app vite build",
     "lint": "prettier --write ./src"
   },
@@ -24,12 +25,13 @@
     "vue-router": "4"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "cross-env": "^7.0.3",
     "less": "^4.1.3",
-    "sass": "^1.55.0",
     "prettier": "^2.2.1",
+    "sass": "^1.55.0",
+    "svgo": "^3.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0",
     "vue-tsc": "^0.40.4"
