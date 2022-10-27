@@ -96,24 +96,7 @@ export default defineComponent(
       if (this.svgIcon) {
         return this.svgIcon;
       }
-      return (
-        <span {...this.baseAttrs}>
-          <div
-            class="next-loading next-open next-loading-inline"
-            style="width: 100%; height: 100%; overflow: hidden"
-          >
-            <div class="next-loading-tip">
-              <div class="next-loading-indicator" />
-            </div>
-            <div class="next-loading-component next-loading-wrap">
-              <div class="next-loading-masker" />
-              <div class="demo-basic">
-                <InsideLoadingOutlined />
-              </div>
-            </div>
-          </div>
-        </span>
-      );
+      return <InsideLoadingOutlined {...this.baseAttrs} />;
     },
     watch: {
       icon: {

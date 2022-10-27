@@ -26,3 +26,4 @@ privateConfigs.js
 packages/ventose-utils-node/test/willdeleteAll
 packages/ventose-utils-node/libs/gendemo
 packages/ventose-ui/appdist/assets/icon-ext.e2e7a838.png
+packages/ventose-ui/dist
