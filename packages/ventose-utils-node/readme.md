@@ -109,6 +109,19 @@
 </details>
 
 <details>
+  <summary> ./libs/fp/fillNumStringWithZero.js </summary>
+  <br>
+  
+```js
+/**
+ * 用0填充数字:1.jpg => 0001.jpg
+ * @param {any} _num 
+ * @param {any} _length 
+ */
+```
+</details>
+
+<details>
   <summary> ./libs/fp/getPathD.js </summary>
   <br>
   
