@@ -1,6 +1,6 @@
-"use strict";
-import { ExtensionContext } from "vscode";
-import { PathAlias } from "./index";
+'use strict';
+import { ExtensionContext } from 'vscode';
+import { PathAlias } from './index';
 export function activate(context: ExtensionContext) {
   new PathAlias(context);
 }

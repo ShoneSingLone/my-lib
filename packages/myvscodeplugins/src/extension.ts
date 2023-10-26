@@ -35,7 +35,7 @@ export function activate(context: any) {
     if (configs.useImportVue) {
       const provierImportVue = vscode.languages.registerDefinitionProvider(
         [{ language: "vue", scheme: "file" }],
-        new VueProvier()
+        new VueProvier(configs)
       );
       context.subscriptions.push(provierImportVue);
     }

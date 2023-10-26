@@ -2,6 +2,10 @@
 import { DefinitionProvider, Position, Location, Uri } from "vscode";
 
 export class VueProvier implements DefinitionProvider {
+  constructor(configs: object) {
+    this.configs = configs;
+  }
+
   async provideDefinition(document: any, position: any, token: any) {
     /* @ts-ignore */
     const { path } = document.uri;

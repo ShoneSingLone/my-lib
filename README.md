@@ -32,3 +32,7 @@
 - [myvscodeplugins_manage](https://marketplace.visualstudio.com/manage/publishers/ShoneSingLone/extensions/myvscodeplugins/hub?_a=acquisition)
 - [myvscodeplugins_items](https://marketplace.visualstudio.com/items?itemName=ShoneSingLone.myvscodeplugins)
 
+activationEvents:触发extension 启动的事件
+
+- vsce login
+- vsce publish

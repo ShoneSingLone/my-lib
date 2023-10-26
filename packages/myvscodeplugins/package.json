@@ -10,6 +10,9 @@
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"url": "https://github.com/ShoneSingLone/my-lib.git"
+	},
 	"activationEvents": [
 		"onCommand:shone.sing.lone.transpose",
 		"onCommand:shone.sing.lone.expandToLine",
@@ -19,15 +22,6 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"configuration": {
-			"title": "importVue",
-			"properties": {
-				"importVue.aliasMap": {
-					"type": "object",
-					"description": "在这个对象中定制path-alias的规则,你可以使用${cwd}代表当前工作目录的绝对路径"
-				}
-			}
-		},
 		"commands": [
 			{
 				"command": "shone.sing.lone.transpose",
@@ -44,22 +38,15 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"test": "node ./out/test/runTest.js",
+		"publish:patch": "vsce publish patch"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.4",
-		"@types/mocha": "^9.0.0",
 		"@types/node": "^20.8.6",
 		"@types/typescript": "^2.0.0",
 		"@types/vscode": "^1.62.0",
-		"@typescript-eslint/eslint-plugin": "^4.31.1",
-		"@typescript-eslint/parser": "^4.31.1",
-		"@vscode/test-electron": "^1.6.2",
-		"eslint": "^7.32.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.1",
 		"ts-node": "^8.4.1",
-		"tslint": "^5.8.0",
 		"typescript": "^4.4.3",
 		"vscode": "^1.1.21"
 	}
