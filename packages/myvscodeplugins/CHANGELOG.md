@@ -2,8 +2,6 @@
 
 All notable changes to the "myvscodeplugins" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 2024年1月7日
 
-## [Unreleased]
-
-- Initial release
+- 增加Commands.QuoteIt
